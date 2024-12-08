@@ -1,0 +1,160 @@
+/* Container Styling */
+.container1 {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card Styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Form Title */
+.card h1 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+/* Label Styling */
+.card label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  color: #555555;
+  margin-bottom: 0.5rem;
+}
+
+/* Input & Textarea Styling */
+.card input,
+.card textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333333;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card input:focus,
+.card textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Button Styling */
+.card button {
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.card button:active {
+  background-color: #003f7f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card h1 {
+    font-size: 1.75rem;
+  }
+
+  .card input,
+  .card textarea {
+    font-size: 0.9rem;
+  }
+
+  .card button {
+    font-size: 0.9rem;
+  }
+}
+
+/* Custom AOS Animations */
+[data-aos="fade-right"] {
+  animation: fadeRight 1s ease-in-out forwards;
+}
+
+[data-aos="fade-left"] {
+  animation: fadeLeft 1s ease-in-out forwards;
+}
+
+[data-aos="fade-up"] {
+  animation: fadeUp 1s ease-in-out forwards;
+}
+
+[data-aos="zoom-in"] {
+  animation: zoomIn 1s ease-in-out forwards;
+}
+
+/* Keyframes for Animations */
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

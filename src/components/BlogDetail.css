@@ -1,0 +1,29 @@
+.blog-detail {
+  font-family: "Roboto", sans-serif;
+  padding: 20px;
+  text-align: center;
+}
+
+.blog-detail h1 {
+  font-size: 36px;
+  color: #333;
+}
+
+.blog-detail .back-link {
+  text-decoration: none;
+  color: #007bff;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.blog-detail .blog-detail-image {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.blog-detail article {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #555;
+}

@@ -1,0 +1,120 @@
+/* Global Settings */
+#team {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+#team .section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#team .team-title {
+  font-family: "Arial", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: #0056b3;
+  margin-bottom: 10px;
+}
+
+#team .team-description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000000;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-transform: none; /* Sentence case for description */
+  margin-bottom: 30px;
+}
+
+/* Team Member Card */
+.team-member {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.team-member .pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.team-member .pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Member Info */
+.member-info {
+  flex: 1;
+}
+
+.member-info .member-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 5px;
+}
+
+.member-info .member-role {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.member-info .member-description {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #6c757d;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Social Links */
+.social a {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.social a:hover {
+  color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .team-member {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .team-member .pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .member-info {
+    text-align: center;
+  }
+}

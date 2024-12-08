@@ -1,0 +1,139 @@
+/* HeroSection.css */
+
+/* General Section Styling */
+#hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  background: #37517e; /* Dark background */
+  color: #fff; /* White text for contrast */
+  position: relative;
+  overflow: hidden;
+}
+
+#hero .container {
+  z-index: 1;
+}
+
+#hero .row {
+  align-items: center;
+}
+
+/* Heading and Paragraph Styling */
+#hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+#hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #ddd; /* Subtle gray text */
+  line-height: 1.6;
+}
+
+/* Buttons Styling */
+.btn-get-started {
+  background: #007bff; /* Primary button color */
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  margin-right: 15px;
+}
+
+.btn-get-started:hover {
+  background: #0056b3; /* Darker shade on hover */
+}
+
+.btn-watch-video {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.btn-watch-video i {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  transition: transform 0.3s;
+}
+
+.btn-watch-video:hover {
+  color: #007bff;
+}
+
+.btn-watch-video:hover i {
+  transform: scale(1.2); /* Slight zoom on hover */
+}
+
+/* Hero Image Styling */
+.hero-img {
+  text-align: center;
+}
+
+.hero-img img {
+  max-width: 100%;
+  height: auto;
+  animation: updown 3s ease-in-out infinite; /* Added up-down animation */
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  50% {
+    transform: translateY(-20px); /* Moves up */
+  }
+  100% {
+    transform: translateY(0); /* Moves back down */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #hero {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  #hero h1 {
+    font-size: 2rem;
+  }
+
+  #hero p {
+    font-size: 1rem;
+  }
+
+  .btn-getstarted {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+
+  .btn-watch-video {
+    font-size: 0.9rem;
+  }
+
+  .hero-img img {
+    max-width: 90%;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  #hero h1 {
+    font-size: 1.8rem;
+  }
+
+  #hero p {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,101 @@
+/* General Section Styling */
+.about {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: "Arial", sans-serif;
+}
+
+/* Section Title */
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title h2 {
+  font-family: "Arial", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: #0056b3;
+  margin-bottom: 10px;
+}
+
+.section-title h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #007bff;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Content Section */
+.content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content ul li {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.content ul li i {
+  color: #007bff;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+/* Image or Additional Content Section */
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.read-more:hover {
+  background: #0056b3;
+}
+
+.read-more i {
+  margin-left: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .content,
+  .col-lg-6 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .content p {
+    font-size: 1rem;
+  }
+}

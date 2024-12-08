@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "MERN Stack",
+    "imageSrc": "skills/mern.png"
+  },
+  {
+    "id": 2,
+    "title": "App Development",
+    "imageSrc": "skills/app.png"
+  },
+  {
+    "id": 3,
+    "title": "Python Development",
+    "imageSrc": "skills/python.png"
+  },
+  {
+    "id": 4,
+    "title": "Profile Development",
+    "imageSrc": "skills/sop.png"
+  }
+]

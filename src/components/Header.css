@@ -1,0 +1,159 @@
+/* Header.css */
+
+/* General Styling */
+#header {
+  background: #37517e; /* White background for header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensure header is above other elements */
+  transition: all 0.3s; /* Smooth transition for scrolling effects */
+}
+
+#header.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Logo Styling */
+#header .logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #007bff; /* Brand color */
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+#header .logo img {
+  max-height: 60px; /* Limit logo image height */
+  margin-right: 8px; /* Add spacing between image and text */
+}
+
+/* Navigation Menu */
+#navmenu {
+  margin: 0;
+  padding: 0;
+}
+
+#navmenu ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#navmenu ul li {
+  position: relative;
+}
+
+#navmenu ul li a {
+  padding: 10px 15px;
+  color: #ffffff; /* Neutral text color */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+#navmenu ul li a:hover,
+#navmenu ul li a.active {
+  color: #007bff; /* Highlight active or hovered link */
+}
+
+/* Dropdown Menu */
+#navmenu ul li ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  display: none; /* Hide by default */
+}
+
+#navmenu ul li:hover > ul {
+  display: block; /* Show dropdown on hover */
+}
+
+#navmenu ul li ul li {
+  white-space: nowrap;
+}
+
+#navmenu ul li ul li a {
+  padding: 10px 20px;
+  color: #555;
+}
+
+#navmenu ul li ul li a:hover {
+  color: #007bff;
+}
+
+/* Deep Dropdown Styling */
+#navmenu ul li ul li ul {
+  left: 100%;
+  top: 0;
+  display: none;
+}
+
+#navmenu ul li ul li:hover > ul {
+  display: block;
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+  display: none; /* Hidden on desktops */
+  font-size: 24px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .mobile-nav-toggle {
+    display: block; /* Show mobile toggle on smaller screens */
+  }
+
+  #navmenu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+  }
+
+  #navmenu.active {
+    left: 0; /* Slide in navigation menu */
+  }
+
+  #navmenu ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #navmenu ul li {
+    margin: 10px 0;
+  }
+}
+
+/* Get Started Button */
+.btn-getstarted {
+  background: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-getstarted:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
