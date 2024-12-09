@@ -7,6 +7,7 @@ const ContactSection = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState(""); // To show success or error message
 
   // Initialize AOS (Animate On Scroll)
   useEffect(() => {
@@ -24,7 +25,7 @@ const ContactSection = () => {
       message,
     };
 
-    // Sending the contact data to the backend (as POST request)
+    // Sending the contact data to the backend (POST request)
     fetch("http://localhost:5000/api/contact", {
       method: "POST",
       headers: {
@@ -35,6 +36,7 @@ const ContactSection = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Data sent successfully:", data);
+        setStatus("Message sent successfully!"); // Success message
         // Reset the form fields after successful submission
         setUsername("");
         setEmail("");
@@ -42,6 +44,7 @@ const ContactSection = () => {
       })
       .catch((error) => {
         console.error("Error sending data:", error);
+        setStatus("There was an error sending your message."); // Error message
       });
   };
 
@@ -49,6 +52,10 @@ const ContactSection = () => {
     <div className="container1">
       <div className="card" data-aos="fade-up">
         <h1>Contact Us</h1>
+
+        {/* Display status message */}
+        {status && <p className="status-message">{status}</p>}
+
         <form onSubmit={handleFormSubmit}>
           {/* Username Field */}
           <label htmlFor="username">Name</label>
