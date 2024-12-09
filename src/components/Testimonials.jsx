@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react"; // Import only the hooks you need
 import Slider from "react-slick"; // Import React Slick
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -50,7 +50,7 @@ const Testimonials = () => {
       date: "December 10, 2022",
     },
     {
-      id: 3,
+      id: 4, // Changed id from 3 to 4 for uniqueness
       image: "https://via.placeholder.com/150",
       text: "Absolutely loved working with them! They provided amazing solutions that helped our business grow.",
       author: "JOHN SMITH",

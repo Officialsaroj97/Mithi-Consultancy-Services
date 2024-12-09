@@ -1,4 +1,3 @@
-import React from "react";
 import "./CallToAction.css";
 import ctabg from "../assets/img/ctabg.jpg"; // Update with the correct path to your image
 
@@ -31,7 +30,7 @@ const CallToAction = () => {
             <h3>Ready to Transform Your Business?</h3>
             <p>
               Unlock the potential of your business with our innovative
-              solutions. Whether you're looking to enhance your digital
+              solutions. Whether you&apos;re looking to enhance your digital
               presence, streamline operations, or increase customer engagement,
               we are here to help you achieve your goals with personalized
               strategies that deliver results.

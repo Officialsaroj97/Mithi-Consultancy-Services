@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react"; // Removed React as it's not explicitly used
 import { useParams, Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,7 +20,7 @@ const blogs = [
     date: "November 20, 2024",
     author: "Jane Smith",
     content:
-      "In today's world, cybersecurity is no longer optional. It is essential...",
+      "In today&apos;s world, cybersecurity is no longer optional. It is essential...",
     image: "https://via.placeholder.com/800x400",
   },
   {

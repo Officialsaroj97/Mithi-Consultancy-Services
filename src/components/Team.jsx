@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react"; // Removed unused React import
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./Team.css"; // Import the CSS for the Team section
