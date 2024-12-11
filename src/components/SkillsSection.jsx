@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react"; // Removed 'React' as it's unused
 import skills from "./data/skills.json";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -23,8 +23,8 @@ const SkillsSection = () => {
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          We are experts in various technologies and software solutions. Here's
-          a glimpse of what we specialize in:
+          We are experts in various technologies and software solutions.
+          Here&#39;s a glimpse of what we specialize in:
         </p>
 
         <div className="items">

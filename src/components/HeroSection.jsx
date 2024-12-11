@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react"; // Removed unused 'React'
 import "glightbox/dist/css/glightbox.min.css";
 import GLightbox from "glightbox";
 import "./HeroSection.css";
