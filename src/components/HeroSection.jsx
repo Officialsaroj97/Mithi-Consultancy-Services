@@ -1,10 +1,11 @@
+import PropTypes from "prop-types"; // Add this import
 import { useEffect } from "react"; // Removed unused 'React'
 import "glightbox/dist/css/glightbox.min.css";
 import GLightbox from "glightbox";
 import "./HeroSection.css";
 import heroImage from "../assets/img/hero-img.png";
 
-const HeroSection = () => {
+const HeroSection = ({ showForm }) => {
   useEffect(() => {
     // Initialize GLightbox
     GLightbox({
@@ -27,7 +28,11 @@ const HeroSection = () => {
               MERN Stack.
             </p>
             <div className="d-flex">
-              <a href="#about" className="btn-get-started">
+              <a
+                href="#about"
+                className="btn-get-started"
+                onClick={() => showForm("signin")}
+              >
                 Get Started
               </a>
               <a
@@ -50,6 +55,11 @@ const HeroSection = () => {
       </div>
     </section>
   );
+};
+
+// PropTypes validation for showForm only
+HeroSection.propTypes = {
+  showForm: PropTypes.func.isRequired, // showForm should be a function
 };
 
 export default HeroSection;
