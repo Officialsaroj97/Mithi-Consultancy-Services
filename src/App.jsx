@@ -20,8 +20,6 @@ import FaqSection from "./components/FaqSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import FooterNewsletter from "./components/FooterNewsletter";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
@@ -64,8 +62,6 @@ const App = () => {
             }
           />
           <Route path="/blog/:id" element={<BlogDetail />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </div>
