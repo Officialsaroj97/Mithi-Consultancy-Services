@@ -1,160 +1,111 @@
-/* Container Styling */
+/* Global Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
 .container1 {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1.5rem;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 1.5rem;
 }
 
-/* Card Styling */
 .card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 3rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  text-align: center;
-  animation: fadeIn 1s ease-in-out;
+  max-width: 600px;
+  transition: transform 0.3s ease;
 }
 
-/* Form Title */
-.card h1 {
-  font-size: 2rem;
-  color: #333333;
+.card:hover {
+  transform: scale(1.03);
+}
+
+h1 {
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: #0056b3;
+  margin-bottom: 10px;
+}
+
+.status-message {
+  text-align: center;
+  color: green;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.input-container {
   margin-bottom: 1.5rem;
 }
 
-/* Label Styling */
-.card label {
+label {
   display: block;
-  text-align: left;
-  font-weight: bold;
-  color: #555555;
   margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #555;
 }
 
-/* Input & Textarea Styling */
-.card input,
-.card textarea {
+input,
+textarea {
   width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
+  padding: 0.8rem;
+  margin-top: 0.3rem;
   font-size: 1rem;
-  color: #333333;
-  outline: none;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card input:focus,
-.card textarea:focus {
+/* Apply the glowing effect when focused */
+input:focus,
+textarea:focus {
   border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.8); /* Glowing effect */
 }
 
-/* Button Styling */
-.card button {
+textarea {
+  resize: vertical;
+}
+
+button {
   background-color: #007bff;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.75rem 1.5rem;
+  color: white;
   border: none;
-  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
-.card button:hover {
+button:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
 }
 
-.card button:active {
-  background-color: #003f7f;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .card {
     padding: 1.5rem;
   }
 
-  .card h1 {
-    font-size: 1.75rem;
-  }
-
-  .card input,
-  .card textarea {
-    font-size: 0.9rem;
-  }
-
-  .card button {
-    font-size: 0.9rem;
-  }
-}
-
-/* Custom AOS Animations */
-[data-aos="fade-right"] {
-  animation: fadeRight 1s ease-in-out forwards;
-}
-
-[data-aos="fade-left"] {
-  animation: fadeLeft 1s ease-in-out forwards;
-}
-
-[data-aos="fade-up"] {
-  animation: fadeUp 1s ease-in-out forwards;
-}
-
-[data-aos="zoom-in"] {
-  animation: zoomIn 1s ease-in-out forwards;
-}
-
-/* Keyframes for Animations */
-@keyframes fadeRight {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeLeft {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  h1 {
+    font-size: 1.8rem;
   }
 }

@@ -1,16 +1,40 @@
-import PropTypes from "prop-types"; // Add this import
-import { useEffect } from "react"; // Removed unused 'React'
+import { useEffect, useRef } from "react"; // Removed React import
+import PropTypes from "prop-types";
 import "glightbox/dist/css/glightbox.min.css";
 import GLightbox from "glightbox";
 import "./HeroSection.css";
 import heroImage from "../assets/img/hero-img.png";
+import Typed from "typed.js";
 
 const HeroSection = ({ showForm }) => {
+  const typedRef = useRef(null);
+
   useEffect(() => {
-    // Initialize GLightbox
+    const options = {
+      strings: [
+        "Innovative Software Solutions",
+        "Multi Functional Websites",
+        "User-Friendly Apps",
+        "Digital Marketing Strategies",
+        "Creative Designs",
+        "Customer-Centric Approach",
+        "Grow your business",
+        "Get a Free Consultation",
+      ],
+      typeSpeed: 200,
+      backSpeed: 200,
+      loop: true,
+    };
+
+    const typed = new Typed(typedRef.current, options);
+
     GLightbox({
       selector: ".glightbox",
     });
+
+    return () => {
+      typed.destroy();
+    };
   }, []);
 
   return (
@@ -21,7 +45,9 @@ const HeroSection = ({ showForm }) => {
             className="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
             data-aos="zoom-out"
           >
-            <h1>Empowering Your Business with Innovative Software Solutions</h1>
+            <h1>
+              Empowering Your Business with <span ref={typedRef}></span>{" "}
+            </h1>
             <p>
               We are a team of talented developers and designers creating
               innovative software and websites using modern technologies like
@@ -36,7 +62,7 @@ const HeroSection = ({ showForm }) => {
                 Get Started
               </a>
               <a
-                href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                href="video link"
                 className="glightbox btn-watch-video d-flex align-items-center"
               >
                 <i className="bi bi-play-circle"></i>
@@ -57,9 +83,9 @@ const HeroSection = ({ showForm }) => {
   );
 };
 
-// PropTypes validation for showForm only
+// PropTypes validation
 HeroSection.propTypes = {
-  showForm: PropTypes.func.isRequired, // showForm should be a function
+  showForm: PropTypes.func.isRequired,
 };
 
 export default HeroSection;

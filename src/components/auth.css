@@ -1,54 +1,67 @@
-/* auth.css */
 .auth-page {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.auth-page h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.auth-page form {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f4f4;
 }
 
-.auth-page input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.auth-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
 }
 
-.auth-page button {
-  padding: 10px;
-  background-color: #007bff;
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  background: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
-.auth-page button:hover {
-  background-color: #0056b3;
+.btn-submit:hover {
+  background: #0056b3;
 }
 
-.auth-page p {
+.auth-container p {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
-.auth-page a {
+.auth-container a {
   color: #007bff;
   text-decoration: none;
 }
 
-.auth-page a:hover {
+.auth-container a:hover {
   text-decoration: underline;
 }

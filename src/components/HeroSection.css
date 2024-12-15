@@ -22,10 +22,18 @@
 
 /* Heading and Paragraph Styling */
 #hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 700;
   margin-bottom: 15px;
   color: #fff;
+}
+
+#hero h1 span {
+  font-size: 2.3rem;
+  color: #f6c041; /* You can change this to match your design for the typed text */
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
 }
 
 #hero p {
@@ -33,6 +41,20 @@
   margin-bottom: 20px;
   color: #ddd; /* Subtle gray text */
   line-height: 1.6;
+}
+
+/* Typed Text Animation */
+.typed-cursor {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #f6c041;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Buttons Styling */
@@ -113,7 +135,7 @@
     font-size: 1rem;
   }
 
-  .btn-getstarted {
+  .btn-get-started {
     font-size: 0.9rem;
     padding: 8px 20px;
   }

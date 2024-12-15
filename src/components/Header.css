@@ -2,7 +2,7 @@
 
 /* General Styling */
 #header {
-  background: #37517e; /* White background for header */
+  background: #37517e; /* Blue background for header */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   z-index: 1000; /* Ensure header is above other elements */
   transition: all 0.3s; /* Smooth transition for scrolling effects */
@@ -38,6 +38,7 @@
 }
 
 #navmenu ul {
+  font-family: "Roboto", sans-serif;
   list-style: none;
   display: flex;
   align-items: center;
@@ -50,16 +51,20 @@
 }
 
 #navmenu ul li a {
+  font-size: 1.1rem;
   padding: 10px 15px;
   color: #ffffff; /* Neutral text color */
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
-#navmenu ul li a:hover,
 #navmenu ul li a.active {
-  color: #007bff; /* Highlight active or hovered link */
+  color: #fefefe; /* Highlight active  link */
+}
+
+#navmenu ul li a:hover {
+  color: #ff9100; /* Highlight  hovered link */
 }
 
 /* Dropdown Menu */
@@ -87,7 +92,7 @@
 }
 
 #navmenu ul li ul li a:hover {
-  color: #007bff;
+  color: #ffffff;
 }
 
 /* Deep Dropdown Styling */
@@ -142,18 +147,26 @@
   }
 }
 
-/* Get Started Button */
-.btn-getstarted {
-  background: #007bff;
-  color: #fff;
+/* Login Button Styling */
+.btn-login {
+  background: #007bff; /* Primary blue color */
+  color: #ffffff;
   padding: 10px 20px;
+  border: none;
   border-radius: 25px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
-.btn-getstarted:hover {
-  background: #0056b3; /* Darker blue on hover */
+.btn-login:hover {
+  background: #ff9100; /* Slightly darker blue on hover */
+  transform: translateY(-2px); /* Lift effect */
+}
+
+.btn-login:focus {
+  outline: 2px solid #007bff; /* Blue outline on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect */
 }

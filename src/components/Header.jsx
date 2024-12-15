@@ -1,13 +1,23 @@
-import PropTypes from "prop-types"; // Only keep the necessary imports
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
-const Header = ({ handleShowForm }) => {
+const Header = () => {
+  const navigate = useNavigate(); // React Router hook for navigation
+
+  const handleContactClick = (e) => {
+    e.preventDefault(); // Default behavior ko prevent karo
+    const contactSection = document.getElementById("contact-section"); // Correct DOM element find karo
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" }); // Smooth scrolling
+    }
+  };
+
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         {/* Logo */}
-        <a href="index.html" className="logo d-flex align-items-center me-auto">
-          {/* Use an image logo */}
+        <a href="/" className="logo d-flex align-items-center me-auto">
           <img
             src="./src/assets/img/logo.png"
             alt="Logo"
@@ -39,24 +49,24 @@ const Header = ({ handleShowForm }) => {
               <a href="#blogpage">Blogs</a>
             </li>
             <li>
-              <a href="#contact">Contact</a>
+              <a href="#contact" onClick={handleContactClick}>
+                Contact
+              </a>
             </li>
           </ul>
-          <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        {/* Get Started Button */}
-        <a className="btn-getstarted" onClick={() => handleShowForm("signin")}>
-          Get Started
-        </a>
+        {/* Login Button */}
+        <button className="btn-login" onClick={() => navigate("/signin")}>
+          Login
+        </button>
       </div>
     </header>
   );
 };
 
-// Prop validation for handleShowForm
 Header.propTypes = {
-  handleShowForm: PropTypes.func.isRequired, // Ensure handleShowForm is a function and is required
+  handleShowForm: PropTypes.func.isRequired,
 };
 
 export default Header;

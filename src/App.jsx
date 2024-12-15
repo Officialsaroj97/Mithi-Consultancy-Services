@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react"; // React import ko remove kar diya
+import { useState } from "react";
 import HeroSection from "./components/HeroSection";
 import Header from "./components/Header";
+import Signin from "./components/Signin"; // Added import
+import Signup from "./components/SignUp.jsx"; // Updated case
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
@@ -23,28 +25,24 @@ import FooterNewsletter from "./components/FooterNewsletter";
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
+  const [formType, setFormType] = useState("signin");
 
-  const handleShowForm = () => {
+  const handleShowForm = (type) => {
+    setFormType(type);
     setShowForm(true);
   };
 
-  const handleCloseForm = () => {
-    setShowForm(false);
-  };
-
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <div className="index-page">
         <Header handleShowForm={handleShowForm} />
         <Routes>
+          {/* Main Page */}
           <Route
             path="/"
             element={
               <>
-                <HeroSection
-                  showForm={showForm}
-                  handleCloseForm={handleCloseForm}
-                />
+                <HeroSection showForm={showForm} formType={formType} />
                 <ClientsSection />
                 <AboutSection />
                 <WhyUsSection />
@@ -61,6 +59,8 @@ const App = () => {
               </>
             }
           />
+          <Route path="/signin" element={<Signin />} /> {/* Signin Route */}
+          <Route path="/signup" element={<Signup />} /> {/* Signup Route */}
           <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>
         <Footer />

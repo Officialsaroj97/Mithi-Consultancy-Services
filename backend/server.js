@@ -1,22 +1,23 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
-const bodyParser = require("body-parser");
-const cors = require("cors"); // Import CORS middleware
+const cors = require("cors");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const PORT = 5000;
 
 // Middleware for parsing JSON data and enabling CORS
-app.use(bodyParser.json());
+app.use(express.json()); // bodyParser.json() ko replace kiya
 app.use(cors()); // Enable CORS for all origins
 
 // MongoDB Connection
 mongoose
   .connect("mongodb://localhost:27017/contact-form", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }) // Updated connection options
+    useNewUrlParser: true, // Inbuilt by mongoose from version 6 onwards
+    useUnifiedTopology: true, // Inbuilt by mongoose from version 6 onwards
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
@@ -29,7 +30,82 @@ const ContactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model("Contact", ContactSchema);
 
-// POST route to save form data and send email
+// User schema for Signup and Signin
+const UserSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
+
+const User = mongoose.model("User", UserSchema);
+
+// POST route for Signup
+app.post("/api/signup", async (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10); // Hashing the password
+
+    const newUser = new User({ name, email, password: hashedPassword });
+
+    await newUser.save();
+
+    const token = jwt.sign({ userId: newUser._id }, "your_jwt_secret", {
+      expiresIn: "1h",
+    });
+
+    res.status(201).json({
+      message: "User registered successfully",
+      token: token, // Send JWT token after successful registration
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error registering user", error: err.message });
+  }
+});
+
+// POST route for Signin
+app.post("/api/signin", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ message: "Both email and password are required." });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials." });
+    }
+
+    const token = jwt.sign({ userId: user._id }, "your_jwt_secret", {
+      expiresIn: "1h",
+    });
+
+    res.status(200).json({
+      message: "Signed in successfully",
+      token: token, // Send JWT token after successful sign-in
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Error signing in", error: err.message });
+  }
+});
+
+// POST route to save form data and send email (contact form)
 app.post("/api/contact", async (req, res) => {
   const { username, email, message } = req.body;
 
@@ -46,7 +122,7 @@ app.post("/api/contact", async (req, res) => {
       port: 465,
       auth: {
         user: "officialpranay108@gmail.com", // Your email
-        pass: "xnxm tiqb ykab dznn", // Your app password
+        pass: "xnxm tiqb ykab dznn", // Your app password (Make sure to keep it private!)
       },
     });
 
