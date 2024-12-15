@@ -18,7 +18,6 @@ const Signin = () => {
       return;
     }
 
-    // Make a POST request to the backend
     fetch("http://localhost:5000/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

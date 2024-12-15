@@ -21,9 +21,7 @@ const Signup = () => {
     try {
       const response = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
 
@@ -38,7 +36,7 @@ const Signup = () => {
         setPassword("");
       }
     } catch (error) {
-      console.error("Error during signup:", error); // Logging the error
+      console.error("Error during signup:", error);
       setError("Error connecting to the server.");
     }
   };
