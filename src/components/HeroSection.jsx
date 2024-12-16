@@ -59,7 +59,7 @@ const HeroSection = ({ showForm }) => {
                 className="btn-get-started"
                 onClick={() => showForm("signin")}
               >
-                Get Started
+                Get Internship
               </a>
               <a
                 href="video link"

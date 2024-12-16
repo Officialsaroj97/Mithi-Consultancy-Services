@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./Header.css";
 
 const Header = () => {
-  const navigate = useNavigate(); // React Router hook for navigation
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   const handleContactClick = (e) => {
     e.preventDefault(); // Default behavior ko prevent karo
@@ -53,13 +53,26 @@ const Header = () => {
                 Contact
               </a>
             </li>
+            <li>{isAuthenticated && <p>{user.name}</p>}</li>
+            {isAuthenticated ? (
+              <li>
+                <button
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  Log Out
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button onClick={() => loginWithRedirect()}>Log In</button>
+              </li>
+            )}
           </ul>
         </nav>
-
-        {/* Login Button */}
-        <button className="btn-login" onClick={() => navigate("/signin")}>
-          Login
-        </button>
       </div>
     </header>
   );
