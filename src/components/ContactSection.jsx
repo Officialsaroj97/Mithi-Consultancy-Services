@@ -15,7 +15,8 @@ const ContactSection = () => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  const handleFormSubmit = (e) => {
+  // Form submit handler
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     let formIsValid = true;
     const newErrors = {};
@@ -38,23 +39,28 @@ const ContactSection = () => {
     if (formIsValid) {
       const contactData = { username, email, message };
 
-      fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Data Sent in Progress:", data);
-          setStatus("Thank You for Contacting Us!");
+      try {
+        const response = await fetch("http://localhost:5000/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(contactData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log("Message Sent in Progress:", data);
+          setStatus("Thank you for contacting us!");
           setUsername("");
           setEmail("");
           setMessage("");
-        })
-        .catch((error) => {
-          console.error("Error sending data:", error);
-          setStatus("There was an error sending your message.");
-        });
+        } else {
+          setStatus(data.message || "Error sending your message");
+        }
+      } catch (error) {
+        console.error("Error sending data:", error);
+        setStatus("There was an error sending your message.");
+      }
     }
   };
 
@@ -73,7 +79,7 @@ const ContactSection = () => {
             id="username"
             name="username"
             required
-            maxLength="20" // Limits username to 20 characters
+            maxLength="20"
             autoComplete="off"
             value={username}
             onChange={(e) => setUsername(e.target.value)}

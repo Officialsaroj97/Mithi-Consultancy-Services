@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"; // Removed React import
+import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import "glightbox/dist/css/glightbox.min.css";
 import GLightbox from "glightbox";
@@ -57,7 +57,7 @@ const HeroSection = ({ showForm }) => {
               <a
                 href="#about"
                 className="btn-get-started"
-                onClick={() => showForm("signin")}
+                onClick={() => showForm && showForm("signin")} // Check if `showForm` is defined
               >
                 Get Internship
               </a>
@@ -83,7 +83,6 @@ const HeroSection = ({ showForm }) => {
   );
 };
 
-// PropTypes validation
 HeroSection.propTypes = {
   showForm: PropTypes.func.isRequired,
 };

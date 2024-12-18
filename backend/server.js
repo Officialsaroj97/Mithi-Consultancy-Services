@@ -1,64 +1,43 @@
-import { useState } from "react";
-import { useAuth } from "./AuthContext";
-import { useNavigate } from "react-router-dom";
+// server.js (Node.js)
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const PORT = 5000;
 
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useAuth();
-  const navigate = useNavigate();
+// Middleware setup
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow requests only from React frontend URL
+  })
+);
+app.use(express.json());
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:5000/api/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+// Example signin route
+app.post("/api/signin", (req, res) => {
+  const { email, password } = req.body;
+  // Handle user login, authenticate here
+  if (email && password) {
+    res.json({ token: "your-auth-token" });
+  } else {
+    res.status(400).json({ message: "Invalid credentials" });
+  }
+});
 
-      const data = await response.json();
+// Contact route
+app.post("/api/contact", (req, res) => {
+  const { username, email, message } = req.body;
 
-      if (response.ok && data.token) {
-        // Save the token to localStorage or context
-        localStorage.setItem("authToken", data.token);
-        login(); // Mark user as logged in in the app
-        navigate("/"); // Redirect to the main page
-      } else {
-        alert(data.message || "Login failed");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      alert("An error occurred while logging in. Please try again.");
-    }
-  };
+  // Validate contact form data
+  if (username && email && message) {
+    // Process form data (e.g., store in database or send email)
+    console.log("Contact Form Submitted: ", { username, email, message });
+    res.json({ message: "Message received. We will get back to you shortly!" });
+  } else {
+    res.status(400).json({ message: "Please fill in all fields." });
+  }
+});
 
-  return (
-    <div>
-      <h2>Login Page</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <br />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
-};
-
-export default LoginPage;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

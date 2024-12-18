@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import HeroSection from "./components/HeroSection";
 import Header from "./components/Header";
-import Signin from "./components/Signin"; // Added import
-import Signup from "./components/SignUp.jsx"; // Updated case
+import Signin from "./components/Signin";
+import Signup from "./components/SignUp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
@@ -27,13 +27,19 @@ const App = () => {
   const [showForm, setShowForm] = useState(false);
   const [formType, setFormType] = useState("signin");
 
+  // Toggle form display and set form type (signin/signup)
   const handleShowForm = (type) => {
     setFormType(type);
     setShowForm(true);
   };
 
+  // Close form handler
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <Router>
       <div className="index-page">
         <Header handleShowForm={handleShowForm} />
         <Routes>
@@ -42,7 +48,12 @@ const App = () => {
             path="/"
             element={
               <>
-                <HeroSection showForm={showForm} formType={formType} />
+                <HeroSection
+                  showForm={(type) => {
+                    setShowForm(true);
+                    setFormType(type);
+                  }}
+                />
                 <ClientsSection />
                 <AboutSection />
                 <WhyUsSection />
@@ -59,8 +70,28 @@ const App = () => {
               </>
             }
           />
-          <Route path="/signin" element={<Signin />} /> {/* Signin Route */}
-          <Route path="/signup" element={<Signup />} /> {/* Signup Route */}
+          {/* Auth Pages */}
+          <Route
+            path="/signin"
+            element={
+              showForm && formType === "signin" ? (
+                <Signin closeForm={closeForm} />
+              ) : (
+                <Signin />
+              )
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              showForm && formType === "signup" ? (
+                <Signup closeForm={closeForm} />
+              ) : (
+                <Signup />
+              )
+            }
+          />
+          {/* Blog Detail */}
           <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>
         <Footer />
