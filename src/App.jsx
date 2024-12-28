@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import HeroSection from "./components/HeroSection";
 import Header from "./components/Header";
@@ -35,12 +35,17 @@ const App = () => {
   };
 
   const closeForm = () => {
-    console.log("Close Form Triggered"); // Debugging
     setShowForm(false); // Close the form
   };
 
   return (
-    <Router>
+    <BrowserRouter
+      basename="/" // Use for deploy paths if needed
+      future={{
+        v7_startTransition: true, // For optimized state updates
+        v7_relativeSplatPath: true, // Updated relative path resolution for splats
+      }}
+    >
       <div className="index-page">
         <Header handleShowForm={handleShowForm} />
 
@@ -68,35 +73,11 @@ const App = () => {
               </>
             }
           />
-          <Route
-            path="/signin"
-            element={
-              showForm && formType === "signin" ? (
-                <Signin closeForm={closeForm} />
-              ) : (
-                <Signin />
-              )
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              showForm && formType === "signup" ? (
-                <Signup closeForm={closeForm} />
-              ) : (
-                <Signup />
-              )
-            }
-          />
+          <Route path="/signin" element={<Signin closeForm={closeForm} />} />
+          <Route path="/signup" element={<Signup closeForm={closeForm} />} />
           <Route
             path="/registration"
-            element={
-              showForm && formType === "registration" ? (
-                <RegistrationForm onClose={closeForm} />
-              ) : (
-                <RegistrationForm />
-              )
-            }
+            element={<RegistrationForm onClose={closeForm} />}
           />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
@@ -123,7 +104,7 @@ const App = () => {
 
         <Footer />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 

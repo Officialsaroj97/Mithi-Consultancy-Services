@@ -1,151 +1,102 @@
-import React, { useState, useRef } from "react";
+import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./ContactSection.css";
 
 const Contact = () => {
-  const [successMessage, setSuccessMessage] = useState(""); // For showing success message
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+    return () => AOS.refresh();
+  }, []);
 
-  const formRef = useRef(null); // To reset the form
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    let formIsValid = true;
+    const newErrors = {};
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const validateForm = () => {
-    let formErrors = {};
-    let valid = true;
-
-    if (formData.name.length > 20) {
-      formErrors.name = "Name can't be longer than 20 characters.";
-      valid = false;
-    } else {
-      formErrors.name = "";
+    if (!username.trim()) {
+      newErrors.username = "Username is required";
+      formIsValid = false;
     }
-
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      formErrors.email = "Please enter a valid email address.";
-      valid = false;
-    } else {
-      formErrors.email = "";
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+      formIsValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Invalid email format";
+      formIsValid = false;
     }
-
-    const messageWords = formData.message
-      .split(/\s+/)
-      .filter((word) => word.length > 0);
-    if (messageWords.length > 200) {
-      formErrors.message = "Message can't be longer than 200 words.";
-      valid = false;
-    } else {
-      formErrors.message = "";
+    if (!message.trim()) {
+      newErrors.message = "Message is required";
+      formIsValid = false;
     }
+    setErrors(newErrors);
 
-    setErrors(formErrors);
-    return valid;
-  };
+    if (formIsValid) {
+      const contactData = { username, email, message };
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/api/contact`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(contactData),
+          }
+        );
 
-    // Validate the form
-    if (!validateForm()) return;
-
-    const form = event.target;
-    const formDataObj = new FormData(form);
-    formDataObj.append("access_key", "df8e5b09-ecce-42de-a8c9-72a92dfa99f3");
-
-    const jsonObject = Object.fromEntries(formDataObj);
-    const json = JSON.stringify(jsonObject);
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    }).then((res) => res.json());
-
-    if (res.success) {
-      setSuccessMessage("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-      formRef.current.reset();
-      setTimeout(() => {
-        setSuccessMessage("");
-      }, 5000);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Message Sent:", data);
+          setStatus("Thank you for contacting us!");
+          setUsername("");
+          setEmail("");
+          setMessage("");
+        } else {
+          const errorData = await response.json();
+          setStatus(errorData.message || "Error sending your message.");
+          console.error("Error Response:", errorData);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setStatus("There was an error sending your message.");
+      }
     }
   };
 
   return (
-    <section className="contact">
-      <form onSubmit={onSubmit} ref={formRef}>
-        <h2>Contact</h2>
-
-        {/* Success Message */}
-        {successMessage && (
-          <div className="success-message">{successMessage}</div>
-        )}
-
-        <div className="input-box">
-          <label>Full Name</label>
-          <input
-            type="text"
-            className="field"
-            placeholder="Enter Your Full Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          {errors.name && <p className="error-text">{errors.name}</p>}
-        </div>
-
-        <div className="input-box">
-          <label>Email</label>
-          <input
-            type="email"
-            className="field"
-            placeholder="Enter Your Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && <p className="error-text">{errors.email}</p>}
-        </div>
-
-        <div className="input-box">
-          <label>Message</label>
-          <textarea
-            name="message"
-            className="field-message"
-            placeholder="Enter Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
-          {errors.message && <p className="error-text">{errors.message}</p>}
-        </div>
-
-        <div className="input-box">
-          <button type="submit" className="btn-1">
-            Send Message
-          </button>
-        </div>
+    <div data-aos="fade-up" className="contact-section">
+      <form onSubmit={handleFormSubmit}>
+        <h2>Contact Us</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {errors.username && <p className="error">{errors.username}</p>}
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {errors.email && <p className="error">{errors.email}</p>}
+        <textarea
+          placeholder="Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        {errors.message && <p className="error">{errors.message}</p>}
+        <button type="submit">Send</button>
+        <p className="status">{status}</p>
       </form>
-    </section>
+    </div>
   );
 };
 
