@@ -1,0 +1,135 @@
+/* Form Overlay */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: auto; /* Ensures modal content can scroll without cut-off */
+}
+
+/* Form Container */
+.form-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow-y: auto;
+  max-height: 90%; /* Adjusted max-height */
+  margin: 20px; /* Margin to ensure padding from edges */
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Adjusted for a more compact placement */
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Form Title */
+.form-container h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Label */
+.form-group label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+/* Required Asterisk */
+.required {
+  color: red;
+  margin-left: 5px;
+}
+
+/* Input Fields */
+.form-group input {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Error Message */
+.error {
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #e73904, #f8e305);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .form-group {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-group label {
+    width: 30%;
+    margin-bottom: 0;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  .form-group input {
+    width: 70%;
+  }
+}
+
+@media (max-height: 600px) {
+  .form-container {
+    max-height: 80%;
+  }
+}

@@ -19,6 +19,11 @@ export default [
         ecmaFeatures: { jsx: true },
         sourceType: "module",
       },
+      env: {
+        browser: true, // For browser-related globals
+        node: true, // This will allow the use of Node.js globals like `process`
+        es2021: true, // Enable support for ES2021 features
+      },
     },
     settings: { react: { version: "18.3" } },
     plugins: {
@@ -36,6 +41,7 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+      "no-undef": "off", // Disabling 'no-undef' rule to prevent errors like 'process is not defined'
     },
   },
 ];

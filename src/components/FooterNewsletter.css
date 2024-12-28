@@ -63,7 +63,7 @@
 }
 
 .subscribe-button:hover {
-  background-color: #003d80;
+  background: linear-gradient(135deg, #e73904, #f8e305);
 }
 
 .error-message {

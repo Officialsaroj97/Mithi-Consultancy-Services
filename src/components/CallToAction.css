@@ -50,7 +50,7 @@
   font-weight: 600;
   margin-top: 100px;
   text-transform: uppercase;
-  background-color: #ff7a00; /* Button color */
+  background: linear-gradient(135deg, #1976d2, #0d47a1); /* Button color */
   color: #fff;
   border-radius: 30px;
   transition: all 0.3s ease;
@@ -60,7 +60,11 @@
 
 .call-to-action .cta-btn:hover,
 .call-to-action .cta-btn:focus {
-  background-color: #e66d00; /* Darker shade on hover */
+  background: linear-gradient(
+    135deg,
+    #e73904,
+    #f8e305
+  ); /* Darker shade on hover */
   transform: translateY(-3px); /* Slight lift effect */
 }
 

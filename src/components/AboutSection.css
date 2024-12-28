@@ -70,7 +70,7 @@
 }
 
 .read-more:hover {
-  background: #0056b3;
+  background: linear-gradient(135deg, #e73904, #f8e305);
 }
 
 .read-more i {

@@ -71,7 +71,7 @@
 }
 
 .btn-get-started:hover {
-  background: #0056b3; /* Darker shade on hover */
+  background: linear-gradient(135deg, #e73904, #f8e305);
 }
 
 .btn-watch-video {
@@ -90,7 +90,7 @@
 }
 
 .btn-watch-video:hover {
-  color: #007bff;
+  color: #f98406;
 }
 
 .btn-watch-video:hover i {

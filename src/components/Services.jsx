@@ -2,8 +2,24 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./Services.css"; // Custom styles
-import services from "./data/services.json"; // Assuming a JSON file for services
+import services from "./data/services.json"; // JSON data
 
+// Reusable ServiceItem Component
+const ServiceItem = ({ imageSrc, title, description }) => (
+  <div className="item" data-aos="flip-left" data-aos-duration="1000">
+    <div className="image-wrapper">
+      <img
+        src={`src/assets/${imageSrc}`}
+        alt={title}
+        className="service-image"
+      />
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+);
+
+// Main Services Component
 const Services = () => {
   useEffect(() => {
     AOS.init({
@@ -14,7 +30,6 @@ const Services = () => {
 
   return (
     <section id="services" className="services section light-background">
-      {/* Section Title */}
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <h2 className="section-title">Our Services</h2>
         <p
@@ -26,27 +41,16 @@ const Services = () => {
           excellence.
         </p>
       </div>
-      {/* End Section Title */}
 
       <div className="container">
         <div className="items">
           {services.map((service) => (
-            <div
+            <ServiceItem
               key={service.id}
-              className="item"
-              data-aos="flip-left"
-              data-aos-duration="1000"
-            >
-              <div className="image-wrapper">
-                <img
-                  src={`src/assets/${service.imageSrc}`}
-                  alt={service.title}
-                  className="service-image"
-                />
-              </div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </div>
+              imageSrc={service.imageSrc}
+              title={service.title}
+              description={service.description}
+            />
           ))}
         </div>
       </div>

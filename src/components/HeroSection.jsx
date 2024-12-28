@@ -57,7 +57,7 @@ const HeroSection = ({ showForm }) => {
               <a
                 href="#about"
                 className="btn-get-started"
-                onClick={() => showForm && showForm("signin")} // Check if `showForm` is defined
+                onClick={() => showForm("registration")} // Trigger registration form
               >
                 Get Internship
               </a>

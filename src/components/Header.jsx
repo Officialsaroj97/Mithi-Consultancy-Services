@@ -1,16 +1,22 @@
 import PropTypes from "prop-types";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react";
 import "./Header.css";
 
 const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleContactClick = (e) => {
-    e.preventDefault(); // Default behavior ko prevent karo
-    const contactSection = document.getElementById("contact-section"); // Correct DOM element find karo
+    e.preventDefault();
+    const contactSection = document.getElementById("contact-section");
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" }); // Smooth scrolling
+      contactSection.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -25,50 +31,86 @@ const Header = () => {
           />
         </a>
 
+        {/* Hamburger Toggle Button */}
+        <button
+          className={`mobile-nav-toggle ${isMobileMenuOpen ? "active" : ""}`}
+          onClick={toggleMobileMenu}
+        >
+          <span></span>
+          <span></span>
+        </button>
+
         {/* Navigation Menu */}
-        <nav id="navmenu" className="navmenu">
+        <nav
+          id="navmenu"
+          className={`navmenu ${isMobileMenuOpen ? "active" : ""}`}
+        >
           <ul>
             <li>
-              <a href="#hero" className="active">
+              <a href="#hero" className="active" onClick={toggleMobileMenu}>
                 Home
               </a>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#about" onClick={toggleMobileMenu}>
+                About
+              </a>
             </li>
             <li>
-              <a href="#services">Services</a>
+              <a href="#services" onClick={toggleMobileMenu}>
+                Services
+              </a>
             </li>
             <li>
-              <a href="#portfolio">Portfolio</a>
+              <a href="#portfolio" onClick={toggleMobileMenu}>
+                Portfolio
+              </a>
             </li>
             <li>
-              <a href="#team">Team</a>
+              <a href="#team" onClick={toggleMobileMenu}>
+                Team
+              </a>
             </li>
             <li>
-              <a href="#blogpage">Blogs</a>
+              <a href="#blogpage" onClick={toggleMobileMenu}>
+                Blogs
+              </a>
             </li>
             <li>
-              <a href="#contact" onClick={handleContactClick}>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  handleContactClick(e);
+                  toggleMobileMenu();
+                }}
+              >
                 Contact
               </a>
             </li>
-            <li>{isAuthenticated && <p>{user.name}</p>}</li>
+            {isAuthenticated && <li>{user.name}</li>}
             {isAuthenticated ? (
               <li>
                 <button
-                  onClick={() =>
+                  onClick={() => {
                     logout({
                       logoutParams: { returnTo: window.location.origin },
-                    })
-                  }
+                    });
+                    toggleMobileMenu();
+                  }}
                 >
                   Log Out
                 </button>
               </li>
             ) : (
               <li>
-                <button onClick={() => loginWithRedirect()}>Log In</button>
+                <button
+                  onClick={() => {
+                    loginWithRedirect();
+                    toggleMobileMenu();
+                  }}
+                >
+                  Log In
+                </button>
               </li>
             )}
           </ul>

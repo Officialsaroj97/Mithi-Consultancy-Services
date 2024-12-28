@@ -13,23 +13,35 @@ const FooterNewsletter = () => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("");
     setSentMessage("");
 
-    // Simulate API call or form submission
-    setTimeout(() => {
-      if (email.includes("@") && email.includes(".")) {
-        setSentMessage("Your subscription request has been sent. Thank you!");
-        setLoading(false);
-        setEmail(""); // Reset email field
+    // Make a POST request to backend to handle subscription
+    try {
+      const response = await fetch("http://localhost:5000/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }), // Send email to backend
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSentMessage(data.message);
       } else {
-        setErrorMessage("Please enter a valid email address.");
-        setLoading(false);
+        setErrorMessage(data.message);
       }
-    }, 2000);
+    } catch (error) {
+      setErrorMessage("An error occurred. Please try again.");
+    }
+
+    setLoading(false);
+    setEmail(""); // Reset email field
   };
 
   return (
@@ -52,7 +64,7 @@ const FooterNewsletter = () => {
                   placeholder="Enter your email"
                   required
                 />
-                <button type="submit" className="subscribe-button">
+                <button type="submit" className="btn-1">
                   {loading ? "Loading..." : "Subscribe"}
                 </button>
               </div>
