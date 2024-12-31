@@ -21,7 +21,7 @@ const Footer = () => {
             <a href="index.html" className="d-flex align-items-center">
               {/* Replace Arsha with your logo */}
               <img
-                src="./src/assets/img/logo.png"
+                src="../public/logo.png"
                 alt="Logo"
                 className="footer-logo"
               />

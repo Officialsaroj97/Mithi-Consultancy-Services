@@ -16,14 +16,14 @@ import Services from "./components/Services";
 import CallToAction from "./components/CallToAction";
 import Portfolio from "./components/Portfolio";
 import Team from "./components/Team";
-import BlogPage from "./components/BlogPage";
-import BlogDetail from "./components/BlogDetail";
+import BlogPage from "./components/BlogPage"; // BlogPage imported
+import BlogDetail from "./components/BlogDetailPage"; // BlogDetail imported
 import Testimonials from "./components/Testimonials";
 import FaqSection from "./components/FaqSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import FooterNewsletter from "./components/FooterNewsletter";
-import AdminDashboard from "./components/AdminPanel/AdminDashboard";
+import BlogDetailPage from "./components/BlogDetailPage";
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
@@ -50,6 +50,7 @@ const App = () => {
         <Header handleShowForm={handleShowForm} />
 
         <Routes>
+          {/* Main route for the home page */}
           <Route
             path="/"
             element={
@@ -73,14 +74,16 @@ const App = () => {
               </>
             }
           />
+          {/* Signin, Signup and Registration Routes */}
           <Route path="/signin" element={<Signin closeForm={closeForm} />} />
           <Route path="/signup" element={<Signup closeForm={closeForm} />} />
           <Route
             path="/registration"
             element={<RegistrationForm onClose={closeForm} />}
           />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+          {/* Blog detail page route */}
+          <Route path="/blog/:id" element={<BlogDetailPage />} />{" "}
+          {/* Dynamic blog route */}
         </Routes>
 
         {/* Modal Form Overlay */}
