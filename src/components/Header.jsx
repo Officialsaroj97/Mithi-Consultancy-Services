@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
+import logo from "../assets/logo.png"; // Import logo image as you did in Footer
 import "./Header.css";
 
 const Header = () => {
@@ -24,7 +25,8 @@ const Header = () => {
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         {/* Logo */}
         <a href="/" className="logo d-flex align-items-center me-auto">
-          <img src="./src/assets/logo.png" alt="Logo" className="logo-image" />
+          <img src={logo} alt="Logo" className="logo-image" />{" "}
+          {/* Use imported logo */}
         </a>
 
         {/* Hamburger Toggle Button */}
