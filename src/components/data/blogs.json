@@ -5,7 +5,7 @@
     "date": "November 15, 2024",
     "author": "Saroj Kumar Yadav",
     "summary": "Explore emerging trends like AI-driven development, low-code platforms, and the role of edge computing in software.",
-    "image": "./src/assets/blog/Blog1.jpg"
+    "image": "./src/assets/Blog1.jpg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "date": "November 20, 2024",
     "author": "Ayushee Jha",
     "summary": "Discover best practices for protecting your software against vulnerabilities in the digital age.",
-    "image": "./src/assets/blog/Blog2.jpg"
+    "image": "./src/assets/Blog2.jpg"
   },
   {
     "id": 3,
@@ -21,6 +21,6 @@
     "date": "November 25, 2024",
     "author": "Rahul Sharma",
     "summary": "Learn how Agile practices enhance collaboration, adaptability, and project success.",
-    "image": "./src/assets/blog/Blog4.jpg"
+    "image": "./src/assets/Blog4.jpg"
   }
 ]

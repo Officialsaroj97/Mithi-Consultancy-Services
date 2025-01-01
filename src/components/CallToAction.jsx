@@ -1,5 +1,5 @@
 import "./CallToAction.css";
-import ctabg from "../assets/img/ctabg.jpg"; // Update with the correct path to your image
+import ctabg from "../assets/ctabg.jpg"; // Update with the correct path to your image
 
 const CallToAction = () => {
   return (

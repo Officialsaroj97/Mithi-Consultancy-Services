@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "glightbox/dist/css/glightbox.min.css";
 import GLightbox from "glightbox";
 import "./HeroSection.css";
-import heroImage from "../assets/img/hero-img.png";
+import heroImage from "../assets/hero-img.png";
 import Typed from "typed.js";
 
 const HeroSection = ({ showForm }) => {

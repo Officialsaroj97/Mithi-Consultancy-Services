@@ -18,7 +18,7 @@ const Team = () => {
       role: "Senior MERN Stack Developer",
       description:
         "Expert in building scalable web applications using React, Node.js, MongoDB, and Express, delivering high-performance solutions.",
-      image: "./src/assets/img/team/Ashutosh.jpeg",
+      image: "../assets/Ashutosh.jpg",
       social: {
         twitter: "#",
         facebook: "#",
@@ -31,7 +31,7 @@ const Team = () => {
       role: "MERN Stack Developer",
       description:
         "Skilled in developing dynamic web applications with MERN technologies, focused on creating seamless digital experiences.",
-      image: "./src/assets/img/team/Saroj.jpg",
+      image: "../assets/Saroj.jpg",
       social: {
         twitter: "#",
         facebook: "#",
@@ -44,7 +44,7 @@ const Team = () => {
       role: "SEO Analyst",
       description:
         "Specializes in optimizing websites for higher search rankings and driving organic traffic through data-driven SEO strategies.",
-      image: "./src/assets/img/team/Pranay.jpg",
+      image: "../assets/Pranay.jpg",
       social: {
         twitter: "#",
         facebook: "#",
@@ -57,7 +57,7 @@ const Team = () => {
       role: "Social Media & Marketing Specialist",
       description:
         "Crafts creative social media campaigns to enhance brand visibility and engagement, driving growth across digital platforms.",
-      image: "./src/assets/img/team/Raushani.png",
+      image: "../assets/Raushani.png",
       social: {
         twitter: "#",
         facebook: "#",

@@ -7,7 +7,7 @@ const portfolioItems = [
   {
     id: 1,
     category: "filter-app",
-    imgSrc: "./src/assets/img/portfolio/app-1.jpg",
+    imgSrc: "../assets/app-1.jpg",
     title: "App 1",
     description: "Lorem ipsum, dolor sit",
     gallery: "portfolio-gallery-app",

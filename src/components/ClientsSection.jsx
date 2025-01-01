@@ -4,14 +4,14 @@ import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./ClientsSection.css"; // Your custom styles
-import Belimo from "../assets/img/clients/Belimo.png";
-import cit from "../assets/img/clients/cit.png";
-import gra from "../assets/img/clients/gra.png";
-import Lg from "../assets/img/clients/Lg.png";
-import lil from "../assets/img/clients/lil.png";
-import myob from "../assets/img/clients/myob.png";
-import old from "../assets/img/clients/old.png";
-import tru from "../assets/img/clients/tru.png";
+import Belimo from "../assets/Belimo.png";
+import cit from "../assets/cit.png";
+import gra from "../assets/gra.png";
+import Lg from "../assets/Lg.png";
+import lil from "../assets/lil.png";
+import myob from "../assets/myob.png";
+import old from "../assets/old.png";
+import tru from "../assets/tru.png";
 
 const ClientsSection = () => {
   return (

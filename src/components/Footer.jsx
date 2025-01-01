@@ -20,11 +20,7 @@ const Footer = () => {
           >
             <a href="index.html" className="d-flex align-items-center">
               {/* Replace Arsha with your logo */}
-              <img
-                src="../public/logo.png"
-                alt="Logo"
-                className="footer-logo"
-              />
+              <img src="./assets/logo.png" alt="Logo" className="footer-logo" />
             </a>
             <div className="footer-contact pt-3">
               <p>JagatPura Phatak Near</p>

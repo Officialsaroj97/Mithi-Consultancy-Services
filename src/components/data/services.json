@@ -1,49 +1,49 @@
 [
   {
     "id": 1,
-    "imageSrc": "services/website.png",
+    "imageSrc": "./src/assets/website.png",
     "title": "Website Development",
     "description": "We build dynamic, responsive, and visually stunning websites that drive engagement, enhance user experience, and boost your online presence."
   },
   {
     "id": 2,
-    "imageSrc": "services/software.webp",
+    "imageSrc": "./src/assets/software.webp",
     "title": "Software Development",
     "description": "Custom software solutions tailored to streamline your processes, improve productivity, and align with your unique business goals."
   },
   {
     "id": 3,
-    "imageSrc": "services/app.png",
+    "imageSrc": "./src/assets/app.png",
     "title": "App Development",
     "description": "Transform ideas into feature-rich, user-friendly mobile apps that connect you to customers, improve accessibility, and deliver seamless experiences."
   },
   {
     "id": 4,
-    "imageSrc": "services/digital.png",
+    "imageSrc": "./src/assets/digital.png",
     "title": "Digital Marketing",
     "description": "Reach your audience with data-driven digital strategies that increase brand awareness, generate leads, and drive conversions effectively."
   },
   {
     "id": 5,
-    "imageSrc": "services/graphic.png",
+    "imageSrc": "./src/assets/graphic.png",
     "title": "Graphics Designing",
     "description": "Bring your brand to life with creative and impactful designs that captivate your audience and convey your message effectively."
   },
   {
     "id": 6,
-    "imageSrc": "services/sop.png",
+    "imageSrc": "./src/assets/profile.png",
     "title": "SOP Development",
     "description": "Enhance operational efficiency with well-structured SOPs that ensure clarity, consistency, and compliance in your business processes."
   },
   {
     "id": 7,
-    "imageSrc": "services/crm.png",
+    "imageSrc": "./src/assets/crm.png",
     "title": "CRM Development",
     "description": "Streamline customer interactions and improve retention with tailored CRM solutions that empower your sales and support teams."
   },
   {
     "id": 8,
-    "imageSrc": "services/ai.png",
+    "imageSrc": "./src/assets/ai.png",
     "title": "Artificial Intelligence",
     "description": "Leverage cutting-edge AI technologies to automate processes, gain actionable insights, and make data-driven decisions effortlessly."
   }

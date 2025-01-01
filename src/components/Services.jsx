@@ -8,11 +8,7 @@ import services from "./data/services.json"; // JSON data
 const ServiceItem = ({ imageSrc, title, description }) => (
   <div className="item" data-aos="flip-left" data-aos-duration="1000">
     <div className="image-wrapper">
-      <img
-        src={`src/assets/${imageSrc}`}
-        alt={title}
-        className="service-image"
-      />
+      <img src={`${imageSrc}`} alt={title} className="service-image" />
     </div>
     <h3>{title}</h3>
     <p>{description}</p>

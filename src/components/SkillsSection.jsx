@@ -36,7 +36,7 @@ const SkillsSection = () => {
               data-aos-duration="1000"
             >
               <img
-                src={`src/assets/${data.imageSrc}`}
+                src={`${data.imageSrc}`}
                 alt={data.title}
                 className="skill-image"
               />
