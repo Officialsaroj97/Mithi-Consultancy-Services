@@ -6,6 +6,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Testimonials.css";
 
+// Importing images directly
+import clientImage1 from "../assets/client1.webp"; // Example path for the images
+import clientImage2 from "../assets/client2.jpg";
+import clientImage3 from "../assets/client3.jpg";
+import clientImage4 from "../assets/client4.jpg";
+
 const Testimonials = () => {
   useEffect(() => {
     AOS.init({
@@ -30,30 +36,30 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      image: "https://via.placeholder.com/150",
+      image: clientImage1, // Updated to imported image
       text: "They perfectly met my expectations – working with them felt like an extension of my in-house team. The value we get from them and their quality work set them apart from others.",
-      author: "MARIO SPEEDWOGAN",
+      author: "Sumit Tiwari",
       date: "May 21, 2020",
     },
     {
       id: 2,
-      image: "https://via.placeholder.com/150",
+      image: clientImage2, // Updated to imported image
       text: "Outstanding service and top-notch quality. Their team was very professional and delivered beyond expectations.",
-      author: "JANE DOE",
+      author: "Taufiq Ahmed",
       date: "April 14, 2021",
     },
     {
       id: 3,
-      image: "https://via.placeholder.com/150",
+      image: clientImage3, // Updated to imported image
       text: "Absolutely loved working with them! They provided amazing solutions that helped our business grow.",
-      author: "JOHN SMITH",
+      author: "Aditi Sharma",
       date: "December 10, 2022",
     },
     {
       id: 4, // Changed id from 3 to 4 for uniqueness
-      image: "https://via.placeholder.com/150",
+      image: clientImage4, // Updated to imported image
       text: "Absolutely loved working with them! They provided amazing solutions that helped our business grow.",
-      author: "JOHN SMITH",
+      author: "Sammy Singh",
       date: "December 10, 2022",
     },
   ];
@@ -79,7 +85,7 @@ const Testimonials = () => {
             <div key={testimonial.id} className="testimonial-slide">
               <div className="client-image-wrapper">
                 <img
-                  src={testimonial.image}
+                  src={testimonial.image} // Using imported image
                   alt={testimonial.author}
                   className="client-image"
                 />

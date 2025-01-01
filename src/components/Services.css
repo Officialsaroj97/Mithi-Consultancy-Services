@@ -1,106 +1,90 @@
-/* Base styles */
+/* General styles */
 .services {
-  padding: 60px 0;
-  background-color: #f8f9fa;
+  padding: 3rem 1.5rem;
+  background-color: hsl(0, 0%, 98%);
 }
 
-.section-title h2 {
-  font-family: "Arial", sans-serif;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 1.8rem;
-  color: #0056b3;
-  margin-bottom: 10px;
-}
-
-/* Style for the section description <p> */
-.section-description {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #000000;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
-  text-transform: none; /* Sentence case for description */
-  margin-bottom: 30px;
-}
-
-/* Animation trigger for AOS (animation on scroll) */
-.section-description[data-aos="fade-up"] {
-  opacity: 1; /* Fade in when the element comes into view */
-}
-
-/* Add responsive styling for smaller screens */
-@media (max-width: 768px) {
-  .section-description {
-    font-size: 1rem; /* Slightly smaller font for small screens */
-    padding: 0 20px; /* Add padding to avoid touching edges on small screens */
-  }
-}
-
-.section-title p {
-  font-size: 20px;
-  color: #6c757d;
+.section-title {
   text-align: center;
-  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
+.section-description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+/* Items grid */
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Image styling */
 .image-wrapper {
-  width: 200px; /* Increased size */
-  height: auto;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto 1rem;
 }
 
 .service-image {
-  width: 100%; /* Ensure the image scales with the container */
-  height: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
-/* Service item styles */
-.service-item {
-  background: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.service-item:hover {
-  transform: translateY(-10px);
-}
-
-.service-item .icon {
-  font-size: 36px;
-  color: #007bff;
-  margin-bottom: 15px;
-}
-
-.service-item h4 {
-  font-size: 20px;
-  font-weight: 600;
+/* Text styling */
+.service-title {
+  font-size: 1.5rem;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
-.service-item p {
-  font-size: 14px;
-  color: #6c757d;
-  margin-bottom: 0;
+.service-description {
+  font-size: 1rem;
+  color: #666;
 }
 
-.stretched-link {
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-}
-
-.stretched-link:hover {
-  color: #ff9f00;
-}
-
-/* Responsive design */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .service-item {
-    margin-bottom: 20px;
+  .services {
+    padding: 2rem 1rem;
+  }
+
+  .items {
+    gap: 1.5rem;
+  }
+
+  .item {
+    padding: 1.5rem 1rem;
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
   }
 }

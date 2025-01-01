@@ -38,14 +38,32 @@ const SkillsSection = () => {
   ];
 
   return (
-    <div className="skills-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {skills.map((skill) => (
-        <div key={skill.id} className="skill-card" data-aos="fade-up">
-          <img src={skill.imageSrc} alt={skill.title} className="skill-image" />
-          <h3 className="skill-title">{skill.title}</h3>
-        </div>
-      ))}
-    </div>
+    <section id="expertise" className="skills-section">
+      <div className="container" data-aos="fade-up" data-aos-delay="100">
+        <h2 className="section-title">Our Expertise</h2>
+        <p
+          className="section-description"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          We specialize in cutting-edge technologies and provide expertise in
+          various domains to deliver exceptional solutions tailored to your
+          needs.
+        </p>
+      </div>
+      <div className="skills-container">
+        {skills.map((skill) => (
+          <div key={skill.id} className="skill-card" data-aos="fade-up">
+            <img
+              src={skill.imageSrc}
+              alt={skill.title}
+              className="skill-image"
+            />
+            <h3 className="skill-title">{skill.title}</h3>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

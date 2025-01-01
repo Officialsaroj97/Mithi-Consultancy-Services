@@ -3,6 +3,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./Team.css"; // Import the CSS for the Team section
 
+// Importing images directly
+import AshutoshImg from "../assets/Ashutosh.jpeg";
+import SarojImg from "../assets/Saroj.jpg";
+import PranayImg from "../assets/Pranay.jpg";
+import RaushaniImg from "../assets/Raushani.jpg";
+
 const Team = () => {
   useEffect(() => {
     AOS.init({
@@ -18,7 +24,7 @@ const Team = () => {
       role: "Senior MERN Stack Developer",
       description:
         "Expert in building scalable web applications using React, Node.js, MongoDB, and Express, delivering high-performance solutions.",
-      image: "../assets/Ashutosh.jpg",
+      image: AshutoshImg, // Updated to the imported image variable
       social: {
         twitter: "#",
         facebook: "#",
@@ -31,7 +37,7 @@ const Team = () => {
       role: "MERN Stack Developer",
       description:
         "Skilled in developing dynamic web applications with MERN technologies, focused on creating seamless digital experiences.",
-      image: "../assets/Saroj.jpg",
+      image: SarojImg, // Updated to the imported image variable
       social: {
         twitter: "#",
         facebook: "#",
@@ -44,7 +50,7 @@ const Team = () => {
       role: "SEO Analyst",
       description:
         "Specializes in optimizing websites for higher search rankings and driving organic traffic through data-driven SEO strategies.",
-      image: "../assets/Pranay.jpg",
+      image: PranayImg, // Updated to the imported image variable
       social: {
         twitter: "#",
         facebook: "#",
@@ -57,7 +63,7 @@ const Team = () => {
       role: "Social Media & Marketing Specialist",
       description:
         "Crafts creative social media campaigns to enhance brand visibility and engagement, driving growth across digital platforms.",
-      image: "../assets/Raushani.png",
+      image: RaushaniImg, // Updated to the imported image variable
       social: {
         twitter: "#",
         facebook: "#",
@@ -91,7 +97,7 @@ const Team = () => {
               <div className="team-member d-flex align-items-start">
                 <div className="pic">
                   <img
-                    src={member.image}
+                    src={member.image} // Uses the imported image variable
                     className="img-fluid"
                     alt={member.name}
                   />
