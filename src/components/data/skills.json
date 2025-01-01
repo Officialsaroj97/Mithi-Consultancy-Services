@@ -17,6 +17,6 @@
   {
     "id": 4,
     "title": "Profile Development",
-    "imageSrc": "../src/assets/profile.png"
+    "imageSrc": "./src/assets/profile.png"
   }
 ]
