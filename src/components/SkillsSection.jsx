@@ -1,4 +1,4 @@
-import { useEffect } from "react"; // Removed 'React' as it's unused
+import { useEffect } from "react";
 import skills from "./data/skills.json";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -36,7 +36,7 @@ const SkillsSection = () => {
               data-aos-duration="1000"
             >
               <img
-                src={`${data.imageSrc}`}
+                src={data.imageSrc} // Directly use the path here
                 alt={data.title}
                 className="skill-image"
               />
