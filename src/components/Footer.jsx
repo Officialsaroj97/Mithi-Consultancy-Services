@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
+import logo from "../assets/logo.png";
 import "aos/dist/aos.css"; // AOS CSS for animations
 import "./Footer.css";
 
@@ -20,7 +21,7 @@ const Footer = () => {
           >
             <a href="index.html" className="d-flex align-items-center">
               {/* Replace Arsha with your logo */}
-              <img src="./assets/logo.png" alt="Logo" className="footer-logo" />
+              <img src={logo} alt="Logo" />
             </a>
             <div className="footer-contact pt-3">
               <p>JagatPura Phatak Near</p>

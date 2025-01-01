@@ -24,7 +24,7 @@ const Header = () => {
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         {/* Logo */}
         <a href="/" className="logo d-flex align-items-center me-auto">
-          <img src="../src/assets/logo.png" alt="Logo" className="logo-image" />
+          <img src="./src/assets/logo.png" alt="Logo" className="logo-image" />
         </a>
 
         {/* Hamburger Toggle Button */}
