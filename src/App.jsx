@@ -17,13 +17,12 @@ import CallToAction from "./components/CallToAction";
 import Portfolio from "./components/Portfolio";
 import Team from "./components/Team";
 import BlogPage from "./components/BlogPage"; // BlogPage imported
-import BlogDetail from "./components/BlogDetailPage"; // BlogDetail imported
+import BlogDetailPage from "./components/BlogDetailPage"; // BlogDetailPage imported
 import Testimonials from "./components/Testimonials";
 import FaqSection from "./components/FaqSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import FooterNewsletter from "./components/FooterNewsletter";
-import BlogDetailPage from "./components/BlogDetailPage";
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
@@ -39,13 +38,7 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter
-      basename="/" // Use for deploy paths if needed
-      future={{
-        v7_startTransition: true, // For optimized state updates
-        v7_relativeSplatPath: true, // Updated relative path resolution for splats
-      }}
-    >
+    <BrowserRouter>
       <div className="index-page">
         <Header handleShowForm={handleShowForm} />
 

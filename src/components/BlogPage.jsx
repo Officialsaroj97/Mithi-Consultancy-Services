@@ -5,11 +5,36 @@ import "aos/dist/aos.css";
 import blogsData from "./data/blogs.json"; // JSON file se blogs import kar rahe hain
 import "./BlogPage.css";
 
+// Dynamic imports for images
+import blogImage1 from "../assets/blog1.jpg";
+import blogImage2 from "../assets/blog2.jpg";
+import blogImage3 from "../assets/blog4.jpg"; // and so on, for other images
+
 const BlogPage = () => {
   // Initialize AOS (Animate On Scroll) library
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  // Mapping to add images dynamically to blog data
+  const updatedBlogsData = blogsData.map((blog, index) => {
+    let blogImage;
+    switch (index) {
+      case 0:
+        blogImage = blogImage1;
+        break;
+      case 1:
+        blogImage = blogImage2;
+        break;
+      case 2:
+        blogImage = blogImage3;
+        break;
+      default:
+        blogImage = blogImage1; // default image
+        break;
+    }
+    return { ...blog, image: blogImage };
+  });
 
   return (
     <div id="blogpage" className="blog-page">
@@ -24,7 +49,7 @@ const BlogPage = () => {
 
       {/* List of Blogs */}
       <section className="blog-list">
-        {blogsData.map((blog, index) => (
+        {updatedBlogsData.map((blog, index) => (
           <article
             key={blog.id}
             className="blog-card"
