@@ -2,21 +2,21 @@
   {
     "id": 1,
     "title": "MERN Stack",
-    "imageSrc": "../assets/images/mern.png"
+    "imageSrc": "./assets/images/mern.png"
   },
   {
     "id": 2,
     "title": "App Development",
-    "imageSrc": "../assets/images/app.png"
+    "imageSrc": "./assets/images/app.png"
   },
   {
     "id": 3,
     "title": "Digital Marketing",
-    "imageSrc": "../assets/images/digital.png"
+    "imageSrc": "./assets/images/digital.png"
   },
   {
     "id": 4,
     "title": "Profile Development",
-    "imageSrc": "../assets/images/profile.png"
+    "imageSrc": "./assets/images/profile.png"
   }
 ]
