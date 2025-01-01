@@ -3,20 +3,20 @@
     "id": 1,
     "title": "MERN Stack",
     "imageSrc": "../src/assets/mern.png"
-  },    
+  },
   {
     "id": 2,
     "title": "App Development",
     "imageSrc": "../src/assets/app.png"
   },
   {
-    "id": 3,    
+    "id": 3,
     "title": "Digital Marketing",
     "imageSrc": "../src/assets/digital.png"
   },
   {
     "id": 4,
     "title": "Profile Development",
-    "imageSrc": "./src/assets/profile.png"
+    "imageSrc": "../src/assets/profile.png"
   }
 ]
