@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeroSection from "./components/HeroSection";
 import Header from "./components/Header";
 import Signin from "./components/Auth Page/Signin";
-import Signup from "./components/Auth Page/SignUp";
+import Signup from "./components/Auth Page/Signup";
 import RegistrationForm from "./components/RegistrationForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
