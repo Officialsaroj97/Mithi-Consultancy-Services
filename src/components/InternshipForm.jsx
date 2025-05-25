@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InternshipForm = ({ onClose, onSubmit }) => {
+const InternshipForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -11,16 +11,31 @@ const InternshipForm = ({ onClose, onSubmit }) => {
     resume: null,
   });
 
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const roles = [
     "Frontend Developer",
     "Backend Developer",
     "Full Stack Developer",
     "React Developer",
     "Node.js Developer",
+    "PHP Developer",
     "Java Developer",
     ".NET Developer",
-    "SEO Specialist",
+    "AI/ML Engineer",
+    "Android Developer",
+    "iOS Developer",
+    "Flutter Developer",
+    "React Native Developer",
+    "Python Developer",
+    "UI/UX Designer",
+    "Graphic Designer",
     "Digital Marketing",
+    "SEO Specialist",
+    "Content Writer",
+    "SOP Analyst",
   ];
 
   const handleChange = (e) => {
@@ -32,9 +47,54 @@ const InternshipForm = ({ onClose, onSubmit }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    setLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    const data = new FormData();
+    data.append("fullname", formData.fullname);
+    data.append("email", formData.email);
+    data.append("phone", formData.phone);
+    data.append("college", formData.college);
+    data.append("city", formData.city);
+    data.append("role", formData.role);
+    data.append("resume", formData.resume);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/internships", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+      console.log("✅ Response:", result);
+
+      if (response.ok) {
+        setSuccessMessage("Internship form submitted successfully!");
+        setFormData({
+          fullname: "",
+          email: "",
+          phone: "",
+          college: "",
+          city: "",
+          role: "",
+          resume: null,
+        });
+        // Optional: Close modal after short delay
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        setErrorMessage("Error: " + (result.message || "Submission failed"));
+      }
+    } catch (error) {
+      console.error("❌ Error submitting form:", error);
+      setErrorMessage("Something went wrong. Please try again.");
+    }
+    setLoading(false);
   };
 
   return (
@@ -46,6 +106,23 @@ const InternshipForm = ({ onClose, onSubmit }) => {
           className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center"
           encType="multipart/form-data"
         >
+          {/* Success message with glowing effect */}
+          {successMessage && (
+            <div
+              className="mb-4 p-3 text-center font-semibold rounded glowing-alert"
+              role="alert"
+            >
+              {successMessage}
+            </div>
+          )}
+
+          {/* Error message */}
+          {errorMessage && (
+            <div className="mb-4 p-3 text-center font-semibold rounded bg-red-100 text-red-700 border border-red-400">
+              {errorMessage}
+            </div>
+          )}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
               type="text"
@@ -54,7 +131,8 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               value={formData.fullname}
               onChange={handleChange}
               required
-              className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded px-3 py-2"
+              disabled={loading}
             />
 
             <input
@@ -64,7 +142,8 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded px-3 py-2"
+              disabled={loading}
             />
 
             <input
@@ -76,7 +155,8 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               required
               pattern="[0-9]{10}"
               title="Please enter a valid 10-digit phone number"
-              className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded px-3 py-2"
+              disabled={loading}
             />
 
             <input
@@ -86,7 +166,8 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               value={formData.college}
               onChange={handleChange}
               required
-              className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded px-3 py-2"
+              disabled={loading}
             />
 
             <input
@@ -96,7 +177,8 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               value={formData.city}
               onChange={handleChange}
               required
-              className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded px-3 py-2"
+              disabled={loading}
             />
 
             <select
@@ -104,7 +186,8 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               value={formData.role}
               onChange={handleChange}
               required
-              className="border border-gray-300 rounded px-3 py-2 bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded px-3 py-2 bg-white text-black"
+              disabled={loading}
             >
               <option value="" disabled>
                 Select Internship Role
@@ -127,6 +210,7 @@ const InternshipForm = ({ onClose, onSubmit }) => {
                 onChange={handleChange}
                 required
                 className="w-full border border-gray-300 rounded px-3 py-2"
+                disabled={loading}
               />
             </div>
           </div>
@@ -136,19 +220,21 @@ const InternshipForm = ({ onClose, onSubmit }) => {
               type="button"
               onClick={onClose}
               className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+              disabled={loading}
             >
               Cancel
             </button>
             <button
               type="submit"
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              disabled={loading}
             >
-              Submit
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
 
-        {/* Right side: Info & Illustration */}
+        {/* Right side: Illustration */}
         <div className="w-full md:w-1/2 bg-blue-100 p-4 md:p-8 flex flex-col justify-center items-center rounded-b-lg md:rounded-r-lg md:rounded-bl-none mt-6 md:mt-0">
           <h3 className="text-xl font-semibold mb-4 text-black text-center md:text-left">
             Why Join Us?
@@ -163,6 +249,55 @@ const InternshipForm = ({ onClose, onSubmit }) => {
             className="rounded-lg shadow-md max-w-full h-auto"
           />
         </div>
+
+        {/* Glowing alert CSS */}
+        <style>{`
+        .glowing-alert {
+          animation: glowYellowOrange 2.5s ease-in-out infinite;
+          color: #facc15;
+          text-shadow:
+            0 0 8px #facc15,
+            0 0 16px #facc15,
+            0 0 24px #facc15,
+            0 0 32px #facc15;
+          background-color: #fff9db;
+          border: 1px solid #facc15;
+          user-select: none;
+        }
+        .glowing-alert:hover {
+          animation-play-state: paused;
+          color: #fb923c;
+          text-shadow:
+            0 0 12px #fb923c,
+            0 0 24px #fb923c,
+            0 0 36px #fb923c,
+            0 0 48px #fb923c;
+          border-color: #fb923c;
+          background-color: #fff4e1;
+        }
+        @keyframes glowYellowOrange {
+          0%, 100% {
+            color: #facc15;
+            text-shadow:
+              0 0 8px #facc15,
+              0 0 16px #facc15,
+              0 0 24px #facc15,
+              0 0 32px #facc15;
+            border-color: #facc15;
+            background-color: #fff9db;
+          }
+          50% {
+            color: #fb923c;
+            text-shadow:
+              0 0 12px #fb923c,
+              0 0 24px #fb923c,
+              0 0 36px #fb923c,
+              0 0 48px #fb923c;
+            border-color: #fb923c;
+            background-color: #fff4e1;
+          }
+        }
+      `}</style>
       </div>
     </div>
   );

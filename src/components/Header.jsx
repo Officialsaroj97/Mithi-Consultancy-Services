@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const navigation = [
@@ -14,19 +14,49 @@ const navigation = [
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if token exists in localStorage on component mount
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, [location]); // also check login status when route changes
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
-  const handleNavigation = (e, href) => {
-    e.preventDefault();
+  const scrollToSection = (href) => {
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleNavigation = (e, href) => {
+    e.preventDefault();
     setIsMobileMenuOpen(false);
+
+    if (location.pathname === "/") {
+      // If already on home page, scroll directly
+      scrollToSection(href);
+    } else {
+      // If on other page (signin/signup), navigate to home first
+      navigate("/", { replace: false });
+
+      // After short delay scroll to section (to wait for page to render)
+      setTimeout(() => {
+        scrollToSection(href);
+      }, 100);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/signin");
   };
 
   return (
@@ -56,16 +86,26 @@ const Header = () => {
                 {name}
               </a>
             ))}
-            <button
-              onClick={() => {
-                navigate("/signin");
-                setIsMobileMenuOpen(false);
-              }}
-              className="ml-4 px-3 py-2 border border-white text-white rounded-md text-sm hover:bg-white hover:text-gray-800"
-              style={{ textDecoration: "none" }}
-            >
-              Log In
-            </button>
+
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="ml-4 px-3 py-2 border border-white text-white rounded-md text-sm hover:bg-white hover:text-gray-800"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  navigate("/signin");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="ml-4 px-3 py-2 border border-white text-white rounded-md text-sm hover:bg-white hover:text-gray-800"
+                style={{ textDecoration: "none" }}
+              >
+                Log In
+              </button>
+            )}
           </nav>
 
           {/* Mobile menu button */}
@@ -127,16 +167,29 @@ const Header = () => {
                 {name}
               </a>
             ))}
-            <button
-              onClick={() => {
-                navigate("/signin");
-                setIsMobileMenuOpen(false);
-              }}
-              className="block w-full text-left px-3 py-2 border border-white text-white rounded-md hover:bg-white hover:text-gray-800"
-              style={{ textDecoration: "none" }}
-            >
-              Log In
-            </button>
+            {isLoggedIn ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 border border-white text-white rounded-md hover:bg-white hover:text-gray-800"
+                style={{ textDecoration: "none" }}
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  navigate("/signin");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 border border-white text-white rounded-md hover:bg-white hover:text-gray-800"
+                style={{ textDecoration: "none" }}
+              >
+                Log In
+              </button>
+            )}
           </nav>
         </div>
       )}

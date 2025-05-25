@@ -1,50 +1,39 @@
-// server.js (backend code)
-const express = require("express");
-const nodemailer = require("nodemailer");
-const cors = require("cors");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import authRoutes from "./routes/authRoutes.js";
+import internshipRoutes from "./routes/internshipRoutes.js"; // ✅ Add this line
+
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Middleware to parse JSON
-app.use(express.json());
-app.use(cors()); // Allow cross-origin requests (if needed)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "officialpranay108@gmail.com", // Your email address
-    pass: "gppk xjah inoq jgis", // Your email password
-  },
-});
+app.use(cors());
 
-// Subscription route to handle subscription email
-app.post("/subscribe", (req, res) => {
-  const { email } = req.body; // Receiving email from front end
+// ✅ Serve uploaded resume files
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-  if (!email || !email.includes("@") || !email.includes(".")) {
-    return res
-      .status(400)
-      .json({ message: "Please enter a valid email address." });
-  }
+// ✅ Auth routes use express.json()
+app.use("/api", express.json(), authRoutes);
 
-  // Email content setup
-  const mailOptions = {
-    from: "officialsaroj97@gmail.com",
-    to: email,
-    subject: "Subscription Successful",
-    text: `Thank you for subscribing to our newsletter!`,
-  };
+// ✅ Internship form POST route (Multer handles it, so no express.json here)
+app.use("/api/internships", internshipRoutes);
 
-  // Send the email
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return res
-        .status(500)
-        .json({ message: "Failed to send the email.", error });
-    }
-    res
-      .status(200)
-      .json({ message: "Your subscription request has been sent. Thank you!" });
-  });
-});
-
-app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() =>
+    app.listen(PORT, () =>
+      console.log(`🚀 Server running on http://localhost:${PORT}`)
+    )
+  )
+  .catch((err) => console.log("Mongo Error:", err));

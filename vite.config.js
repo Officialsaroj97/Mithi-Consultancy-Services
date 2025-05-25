@@ -4,6 +4,11 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    proxy: {
+      "/api": "http://localhost:5000",
+    },
+  },
   build: {
     chunkSizeWarningLimit: 1000, // Warning limit adjust kiya gaya
     rollupOptions: {

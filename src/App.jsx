@@ -28,6 +28,7 @@ const App = () => {
     <BrowserRouter>
       <div className="index-page">
         <Header />
+
         <Routes>
           {/* Home Page */}
           <Route
@@ -53,14 +54,16 @@ const App = () => {
               </>
             }
           />
+
           {/* Auth & Form Pages */}
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/registration" element={<RegistrationForm />} />
 
-          {/* Dynamic Blog Detail Page */}
+          {/* Blog Detail Page */}
           <Route path="/blog/:id" element={<BlogDetailPage />} />
         </Routes>
+
         <Footer />
       </div>
     </BrowserRouter>
