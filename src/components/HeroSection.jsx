@@ -1,13 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import "glightbox/dist/css/glightbox.min.css";
 import GLightbox from "glightbox";
 import "./HeroSection.css";
 import heroImage from "../assets/hero-img.png";
 import Typed from "typed.js";
+import InternshipForm from "./InternshipForm";
 
-const HeroSection = ({ showForm }) => {
+const HeroSection = () => {
   const typedRef = useRef(null);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const options = {
@@ -28,14 +30,24 @@ const HeroSection = ({ showForm }) => {
 
     const typed = new Typed(typedRef.current, options);
 
-    GLightbox({
+    const lightbox = GLightbox({
       selector: ".glightbox",
+      autoplayVideos: true, // Important: video auto-play
     });
 
     return () => {
       typed.destroy();
+      lightbox.destroy();
     };
   }, []);
+
+  // Handle form submission
+  const handleFormSubmit = (data) => {
+    console.log("Internship form data:", data);
+    alert(`Thanks ${data.fullname} for applying!`);
+    setShowForm(false);
+    // Yahan aap API call kar sakte hain ya data save kar sakte hain
+  };
 
   return (
     <section id="hero" className="hero section dark-background">
@@ -54,15 +66,14 @@ const HeroSection = ({ showForm }) => {
               MERN Stack.
             </p>
             <div className="d-flex">
-              <a
-                href="#about"
+              <button
                 className="btn-get-started"
-                onClick={() => showForm("registration")} // Trigger registration form
+                onClick={() => setShowForm(true)}
               >
                 Get Internship
-              </a>
+              </button>
               <a
-                href="video link"
+                href="https://www.youtube.com/watch?v=ysz5S6PUM-U" // example video link
                 className="glightbox btn-watch-video d-flex align-items-center"
               >
                 <i className="bi bi-play-circle"></i>
@@ -79,12 +90,16 @@ const HeroSection = ({ showForm }) => {
           </div>
         </div>
       </div>
+
+      {/* Internship Form Modal */}
+      {showForm && (
+        <InternshipForm
+          onClose={() => setShowForm(false)}
+          onSubmit={handleFormSubmit}
+        />
+      )}
     </section>
   );
-};
-
-HeroSection.propTypes = {
-  showForm: PropTypes.func.isRequired,
 };
 
 export default HeroSection;

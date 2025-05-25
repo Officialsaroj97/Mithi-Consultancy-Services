@@ -1,125 +1,147 @@
-import PropTypes from "prop-types";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-import logo from "../assets/logo.png"; // Import logo image as you did in Footer
-import "./Header.css";
+import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+
+const navigation = [
+  { name: "Home", href: "#hero" },
+  { name: "About", href: "#about" },
+  { name: "Services", href: "#services" },
+  { name: "Portfolio", href: "#portfolio" },
+  { name: "Team", href: "#team" },
+  { name: "Blogs", href: "#blogpage" },
+  { name: "Contact", href: "#contact-section" },
+];
 
 const Header = () => {
-  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const handleContactClick = (e) => {
-    e.preventDefault();
-    const contactSection = document.getElementById("contact-section");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleNavigation = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <header id="header" className="header d-flex align-items-center fixed-top">
-      <div className="container-fluid container-xl position-relative d-flex align-items-center">
-        {/* Logo */}
-        <a href="/" className="logo d-flex align-items-center me-auto">
-          <img src={logo} alt="Logo" className="logo-image" />{" "}
-          {/* Use imported logo */}
-        </a>
+    <header
+      className="fixed top-0 w-full z-50"
+      style={{
+        background: "#37517e",
+        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <a href="/" className="flex items-center">
+            <img src={logo} alt="Logo" className="h-12 w-auto" />
+          </a>
 
-        {/* Hamburger Toggle Button */}
-        <button
-          className={`mobile-nav-toggle ${isMobileMenuOpen ? "active" : ""}`}
-          onClick={toggleMobileMenu}
-        >
-          <span></span>
-          <span></span>
-        </button>
-
-        {/* Navigation Menu */}
-        <nav
-          id="navmenu"
-          className={`navmenu ${isMobileMenuOpen ? "active" : ""}`}
-        >
-          <ul>
-            <li>
-              <a href="#hero" className="active" onClick={toggleMobileMenu}>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#about" onClick={toggleMobileMenu}>
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#services" onClick={toggleMobileMenu}>
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#portfolio" onClick={toggleMobileMenu}>
-                Portfolio
-              </a>
-            </li>
-            <li>
-              <a href="#team" onClick={toggleMobileMenu}>
-                Team
-              </a>
-            </li>
-            <li>
-              <a href="#blogpage" onClick={toggleMobileMenu}>
-                Blogs
-              </a>
-            </li>
-            <li>
+          {/* Desktop Nav */}
+          <nav className="hidden sm:flex space-x-4">
+            {navigation.map(({ name, href }) => (
               <a
-                href="#contact"
-                onClick={(e) => {
-                  handleContactClick(e);
-                  toggleMobileMenu();
-                }}
+                key={name}
+                href={href}
+                onClick={(e) => handleNavigation(e, href)}
+                className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800"
+                style={{ textDecoration: "none" }}
               >
-                Contact
+                {name}
               </a>
-            </li>
-            {isAuthenticated && <li>{user.name}</li>}
-            {isAuthenticated ? (
-              <li>
-                <button
-                  onClick={() => {
-                    logout({
-                      logoutParams: { returnTo: window.location.origin },
-                    });
-                    toggleMobileMenu();
-                  }}
+            ))}
+            <button
+              onClick={() => {
+                navigate("/signin");
+                setIsMobileMenuOpen(false);
+              }}
+              className="ml-4 px-3 py-2 border border-white text-white rounded-md text-sm hover:bg-white hover:text-gray-800"
+              style={{ textDecoration: "none" }}
+            >
+              Log In
+            </button>
+          </nav>
+
+          {/* Mobile menu button */}
+          <div className="sm:hidden">
+            <button
+              onClick={toggleMobileMenu}
+              className="p-2 rounded-md text-white hover:bg-blue-700"
+            >
+              {!isMobileMenuOpen ? (
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  Log Out
-                </button>
-              </li>
-            ) : (
-              <li>
-                <button
-                  onClick={() => {
-                    loginWithRedirect();
-                    toggleMobileMenu();
-                  }}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  Log In
-                </button>
-              </li>
-            )}
-          </ul>
-        </nav>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div
+          className="sm:hidden"
+          id="mobile-menu"
+          style={{ background: "#37517e" }}
+        >
+          <nav className="px-2 pt-2 pb-3 space-y-1">
+            {navigation.map(({ name, href }) => (
+              <a
+                key={name}
+                href={href}
+                onClick={(e) => handleNavigation(e, href)}
+                className="block px-3 py-2 text-white rounded-md hover:bg-blue-900"
+                style={{ textDecoration: "none" }}
+              >
+                {name}
+              </a>
+            ))}
+            <button
+              onClick={() => {
+                navigate("/signin");
+                setIsMobileMenuOpen(false);
+              }}
+              className="block w-full text-left px-3 py-2 border border-white text-white rounded-md hover:bg-white hover:text-gray-800"
+              style={{ textDecoration: "none" }}
+            >
+              Log In
+            </button>
+          </nav>
+        </div>
+      )}
     </header>
   );
-};
-
-Header.propTypes = {
-  handleShowForm: PropTypes.func.isRequired,
 };
 
 export default Header;

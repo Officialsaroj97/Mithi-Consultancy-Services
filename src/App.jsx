@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import HeroSection from "./components/HeroSection";
 import Header from "./components/Header";
-import Signin from "./components/Signin";
-import Signup from "./components/SignUp";
+import Signin from "./components/Auth Page/Signin";
+import Signup from "./components/Auth Page/SignUp";
 import RegistrationForm from "./components/RegistrationForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -16,8 +15,8 @@ import Services from "./components/Services";
 import CallToAction from "./components/CallToAction";
 import Portfolio from "./components/Portfolio";
 import Team from "./components/Team";
-import BlogPage from "./components/BlogPage"; // BlogPage imported
-import BlogDetailPage from "./components/BlogDetailPage"; // BlogDetailPage imported
+import BlogPage from "./components/BlogPage";
+import BlogDetailPage from "./components/BlogDetailPage";
 import Testimonials from "./components/Testimonials";
 import FaqSection from "./components/FaqSection";
 import Contact from "./components/Contact";
@@ -25,30 +24,17 @@ import Footer from "./components/Footer";
 import FooterNewsletter from "./components/FooterNewsletter";
 
 const App = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [formType, setFormType] = useState("signin");
-
-  const handleShowForm = (type) => {
-    setFormType(type); // Set form type
-    setShowForm(true); // Display the form
-  };
-
-  const closeForm = () => {
-    setShowForm(false); // Close the form
-  };
-
   return (
     <BrowserRouter>
       <div className="index-page">
-        <Header handleShowForm={handleShowForm} />
-
+        <Header />
         <Routes>
-          {/* Main route for the home page */}
+          {/* Home Page */}
           <Route
             path="/"
             element={
               <>
-                <HeroSection showForm={handleShowForm} />
+                <HeroSection />
                 <ClientsSection />
                 <AboutSection />
                 <WhyUsSection />
@@ -67,37 +53,14 @@ const App = () => {
               </>
             }
           />
-          {/* Signin, Signup and Registration Routes */}
-          <Route path="/signin" element={<Signin closeForm={closeForm} />} />
-          <Route path="/signup" element={<Signup closeForm={closeForm} />} />
-          <Route
-            path="/registration"
-            element={<RegistrationForm onClose={closeForm} />}
-          />
-          {/* Blog detail page route */}
-          <Route path="/blog/:id" element={<BlogDetailPage />} />{" "}
-          {/* Dynamic blog route */}
+          {/* Auth & Form Pages */}
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/registration" element={<RegistrationForm />} />
+
+          {/* Dynamic Blog Detail Page */}
+          <Route path="/blog/:id" element={<BlogDetailPage />} />
         </Routes>
-
-        {/* Modal Form Overlay */}
-        {showForm && (
-          <div className="form-overlay" onClick={closeForm}>
-            <div
-              className="form-container"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {formType === "signin" && <Signin closeForm={closeForm} />}
-              {formType === "signup" && <Signup closeForm={closeForm} />}
-              {formType === "registration" && (
-                <RegistrationForm onClose={closeForm} />
-              )}
-              <button className="close-btn" onClick={closeForm}>
-                X
-              </button>
-            </div>
-          </div>
-        )}
-
         <Footer />
       </div>
     </BrowserRouter>

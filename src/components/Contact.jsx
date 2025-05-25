@@ -12,11 +12,9 @@ const Contact = () => {
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
-    return () => AOS.refresh();
   }, []);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const validateForm = () => {
     let formIsValid = true;
     const newErrors = {};
 
@@ -35,37 +33,39 @@ const Contact = () => {
       newErrors.message = "Message is required";
       formIsValid = false;
     }
+
     setErrors(newErrors);
+    return formIsValid;
+  };
 
-    if (formIsValid) {
-      const contactData = { username, email, message };
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
 
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/api/contact`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(contactData),
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Message Sent:", data);
-          setStatus("Thank you for contacting us!");
-          setUsername("");
-          setEmail("");
-          setMessage("");
-        } else {
-          const errorData = await response.json();
-          setStatus(errorData.message || "Error sending your message.");
-          console.error("Error Response:", errorData);
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, message }),
         }
-      } catch (error) {
-        console.error("Error:", error);
-        setStatus("There was an error sending your message.");
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("Thank you for contacting us!");
+        setUsername("");
+        setEmail("");
+        setMessage("");
+        setErrors({});
+      } else {
+        setStatus(data.message || "Something went wrong.");
       }
+    } catch (error) {
+      console.error(error);
+      setStatus("There was an error sending your message.");
     }
   };
 
@@ -80,6 +80,7 @@ const Contact = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
         {errors.username && <p className="error">{errors.username}</p>}
+
         <input
           type="email"
           placeholder="Email"
@@ -87,14 +88,16 @@ const Contact = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         {errors.email && <p className="error">{errors.email}</p>}
+
         <textarea
           placeholder="Message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
         {errors.message && <p className="error">{errors.message}</p>}
+
         <button type="submit">Send</button>
-        <p className="status">{status}</p>
+        {status && <p className="status">{status}</p>}
       </form>
     </div>
   );

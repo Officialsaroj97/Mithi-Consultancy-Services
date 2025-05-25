@@ -1,5 +1,12 @@
 /* HeroSection.css */
 
+/* Global box-sizing fix */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* General Section Styling */
 #hero {
   display: flex;
@@ -10,6 +17,7 @@
   color: #fff; /* White text for contrast */
   position: relative;
   overflow: hidden;
+  flex-wrap: wrap; /* Prevent overflow on small screens */
 }
 
 #hero .container {
@@ -18,6 +26,14 @@
 
 #hero .row {
   align-items: center;
+  flex-wrap: wrap; /* Added to wrap flex items */
+}
+
+/* Make sure columns inside .row take full width on mobile */
+@media (max-width: 768px) {
+  #hero .row > div {
+    width: 100%;
+  }
 }
 
 /* Heading and Paragraph Styling */
@@ -30,7 +46,7 @@
 
 #hero h1 span {
   font-size: 2.3rem;
-  color: #f6c041; /* You can change this to match your design for the typed text */
+  color: #f6c041; /* Highlight typed text */
   font-weight: 700;
   text-transform: uppercase;
   display: inline-block;
@@ -39,7 +55,7 @@
 #hero p {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  color: #ddd; /* Subtle gray text */
+  color: #ddd;
   line-height: 1.6;
 }
 
@@ -59,7 +75,7 @@
 
 /* Buttons Styling */
 .btn-get-started {
-  background: #007bff; /* Primary button color */
+  background: #007bff;
   color: #fff;
   padding: 10px 25px;
   border-radius: 50px;
@@ -94,7 +110,7 @@
 }
 
 .btn-watch-video:hover i {
-  transform: scale(1.2); /* Slight zoom on hover */
+  transform: scale(1.2);
 }
 
 /* Hero Image Styling */
@@ -105,18 +121,18 @@
 .hero-img img {
   max-width: 100%;
   height: auto;
-  animation: updown 3s ease-in-out infinite; /* Added up-down animation */
+  animation: updown 3s ease-in-out infinite;
 }
 
 @keyframes updown {
   0% {
-    transform: translateY(0); /* Initial position */
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px); /* Moves up */
+    transform: translateY(-20px);
   }
   100% {
-    transform: translateY(0); /* Moves back down */
+    transform: translateY(0);
   }
 }
 
@@ -158,4 +174,9 @@
   #hero p {
     font-size: 0.9rem;
   }
+}
+
+/* Body overflow fix to prevent horizontal scroll */
+body {
+  overflow-x: hidden;
 }
