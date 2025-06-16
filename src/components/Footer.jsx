@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom"; // React Router Link
 import AOS from "aos";
 import logo from "../assets/logo.png";
-import "aos/dist/aos.css"; // AOS CSS for animations
+import "aos/dist/aos.css";
 import "./Footer.css";
 
 const Footer = () => {
@@ -19,76 +20,91 @@ const Footer = () => {
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            <a href="index.html" className="d-flex align-items-center">
-              {/* Replace Arsha with your logo */}
+            <Link to="/" className="d-flex align-items-center">
               <img src={logo} alt="Logo" />
-            </a>
+            </Link>
             <div className="footer-contact pt-3">
-              <p>JagatPura Phatak Near</p>
-              <p>Dadu Nagar Colony - 302025</p>
-              <p className="mt-3">
-                <strong>Phone:</strong> <span>+1 5589 55488 55</span>
+              <p>
+                <strong>Head Office:</strong>
               </p>
               <p>
-                <strong>Email:</strong> <span>supportmcs@gmail.com</span>
+                Yash Tower, 25/101, Ashiana - Digha Rd, opp. St. Xavier’s
+                College of Management & Technology,
+              </p>
+              <p>Rajeev Nagar, Digha Ghat, Patna, Bihar 800001</p>
+
+              <p className="mt-3">
+                <strong> Office Branch - 1:</strong>
+              </p>
+              <p>Dadu Colony, Jagatpura Jaipur, 302017 Rajasthan</p>
+
+              <p className="mt-3">
+                <strong>Phone:</strong>{" "}
+                <span>+91 7667144317 / +91 9798875926</span>
+              </p>
+              <p>
+                <strong>For Business Enquiries:</strong>{" "}
+                <span>support@mithiconsultancyservices.com</span>
+              </p>
+              <p>
+                <strong>For Carrier Enquiries:</strong>{" "}
+                <span>hr@mithiconsultancyservices.com</span>
               </p>
             </div>
           </div>
 
           {/* Useful Links Section */}
           <div
-            className="col-lg-2 col-md-3 footer-links"
+            className="col-lg-3 col-md-3 footer-links"
             data-aos="fade-up"
             data-aos-delay="200"
           >
             <h4>Useful Links</h4>
             <ul>
               <li>
-                <i className="bi bi-chevron-right"></i> <a href="#">Home</a>
-              </li>
-              <li>
-                <i className="bi bi-chevron-right"></i> <a href="#">About us</a>
-              </li>
-              <li>
-                <i className="bi bi-chevron-right"></i> <a href="#">Services</a>
+                <i className="bi bi-chevron-right"></i> <Link to="/">Home</Link>
               </li>
               <li>
                 <i className="bi bi-chevron-right"></i>{" "}
-                <a href="#">Terms of service</a>
+                <Link to="/about">About us</Link>
+              </li>
+              <li>
+                <i className="bi bi-chevron-right"></i>{" "}
+                <Link to="/services">Services</Link>
+              </li>
+              <li>
+                <i className="bi bi-chevron-right"></i>{" "}
+                <Link to="/terms">Terms of service</Link>
               </li>
             </ul>
           </div>
 
-          {/* Our Services Section */}
+          {/* Career & Affiliate Section (Replaces Our Services) */}
           <div
-            className="col-lg-2 col-md-3 footer-links"
+            className="col-lg-3 col-md-3 footer-links"
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            <h4>Our Services</h4>
+            <h4>Opportunities</h4>
             <ul>
               <li>
                 <i className="bi bi-chevron-right"></i>{" "}
-                <a href="#">Web Design</a>
+                <Link to="/career">Career</Link>
               </li>
               <li>
                 <i className="bi bi-chevron-right"></i>{" "}
-                <a href="#">Web Development</a>
+                <Link to="/affiliate">Affiliate</Link>
               </li>
               <li>
                 <i className="bi bi-chevron-right"></i>{" "}
-                <a href="#">Product Management</a>
-              </li>
-              <li>
-                <i className="bi bi-chevron-right"></i>{" "}
-                <a href="#">Marketing</a>
+                <Link to="/referral">Referral</Link>
               </li>
             </ul>
           </div>
 
           {/* Follow Us Section */}
           <div
-            className="col-lg-4 col-md-12"
+            className="col-lg-2 col-md-12"
             data-aos="fade-up"
             data-aos-delay="400"
           >

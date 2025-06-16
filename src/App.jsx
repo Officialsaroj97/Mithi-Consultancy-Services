@@ -23,6 +23,24 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import FooterNewsletter from "./components/FooterNewsletter";
 
+const HomePage = () => (
+  <>
+    <HeroSection />
+    <ClientsSection />
+    <AboutSection />
+    <WhyUsSection />
+    <SkillsSection />
+    <Services />
+    <CallToAction />
+    <Portfolio />
+    <Team />
+    <Testimonials />
+    <FaqSection />
+    <BlogPage />
+    <FooterNewsletter />
+  </>
+);
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -31,29 +49,20 @@ const App = () => {
 
         <Routes>
           {/* Home Page */}
-          <Route
-            path="/"
-            element={
-              <>
-                <HeroSection />
-                <ClientsSection />
-                <AboutSection />
-                <WhyUsSection />
-                <SkillsSection />
-                <Services />
-                <CallToAction />
-                <Portfolio />
-                <Team />
-                <Testimonials />
-                <FaqSection />
-                <BlogPage />
-                <div id="contact-section">
-                  <Contact />
-                </div>
-                <FooterNewsletter />
-              </>
-            }
-          />
+          <Route path="/" element={<HomePage />} />
+
+          {/* Individual pages for sections to update URL */}
+          <Route path="/about" element={<AboutSection />} />
+          <Route path="/why-us" element={<WhyUsSection />} />
+          <Route path="/clients" element={<ClientsSection />} />
+          <Route path="/skills" element={<SkillsSection />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/faq" element={<FaqSection />} />
+          <Route path="/blogpage" element={<BlogPage />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* Auth & Form Pages */}
           <Route path="/signin" element={<Signin />} />

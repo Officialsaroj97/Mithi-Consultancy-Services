@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const navigation = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "Team", href: "#team" },
-  { name: "Blogs", href: "#blogpage" },
-  { name: "Contact", href: "#contact-section" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Team", href: "/team" },
+  { name: "Blogs", href: "/blogpage" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const Header = () => {
@@ -19,37 +19,40 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if token exists in localStorage on component mount
+    // Check login on route change
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
-  }, [location]); // also check login status when route changes
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
+    // Scroll to section on route change
+    // Section id should match last part of path or some mapping
+    // Example: path '/about' -> scroll to element with id 'about'
+    const path =
+      location.pathname === "/" ? "hero" : location.pathname.substring(1);
 
-  const scrollToSection = (href) => {
-    const target = document.querySelector(href);
+    const target = document.getElementById(path);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
+  }, [location]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   const handleNavigation = (e, href) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
 
-    if (location.pathname === "/") {
-      // If already on home page, scroll directly
-      scrollToSection(href);
+    if (location.pathname === href) {
+      // Same path - just scroll
+      const path = href === "/" ? "hero" : href.substring(1);
+      const target = document.getElementById(path);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
-      // If on other page (signin/signup), navigate to home first
-      navigate("/", { replace: false });
-
-      // After short delay scroll to section (to wait for page to render)
-      setTimeout(() => {
-        scrollToSection(href);
-      }, 100);
+      // Navigate to new path
+      navigate(href);
     }
   };
 
